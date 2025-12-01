@@ -4,7 +4,7 @@ import g4p_controls.*;
 // the GViewPeasyCam control or the PeasyCam library.
 import peasy.*;
 
-//haha
+
 public void setup(){
   size(480, 320, JAVA2D);
   createGUI();
