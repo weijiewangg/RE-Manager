@@ -35,7 +35,7 @@ void mousePressed() {
       float y = by + j * (bh + 20);
       
       if (mouseX > x && mouseX < x + bw && mouseY > y && mouseY < y + bh) {
-        println("Button clicked: " + buttonLabels[i]);
+        println("Button clicked: " + buttonLabels[i*3+j]);
       }
     }
   }
