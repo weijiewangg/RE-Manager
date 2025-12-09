@@ -26,27 +26,27 @@ class Shape{
   void drawShape(){
    if(this.type.equals("circle")){
      for(int i = 0; i < this.numShapes; i++){
-        circle(this.center.x, this.center.y, this.diameter[i]);
+        circle(this.xPoint, this.yPoint, this.diameter[i]);
         fill(this.shapeCol[i]);
      }
    }
    else if(this.type.equals("square")){
      for(int i = 0; i < this.numShapes; i++){
-        square(this.center.x, this.center.y, this.diameter[i]);
+        square(this.xPoint, this.yPoint, this.diameter[i]);
         fill(this.shapeCol[i]);
      }
    }
    if(!right){
-    this.center.x -= xSpeed;
-    this.center.y -= ySpeed;
+    this.xPoint -= xSpeed;
+    this.yPoint -= ySpeed;
     this.move ++;
     if(this.move > 50){
       right = true;
     }
    }
    else{
-    this.center.x += xSpeed;
-    this.center.y += ySpeed;
+    this.xPoint += xSpeed;
+    this.yPoint += ySpeed;
     this.move --;
     if(this.move < -50){
       right = false;
