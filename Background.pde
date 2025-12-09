@@ -18,11 +18,11 @@ class Background {
     int prevChoice = this.choice;
     
     do {
-      this.choice = int(random(1,3));
+      this.choice = int(random(0,1.99));
     }
     while (prevChoice == this.choice);
     
-    this.image = loadImage(choice + ".jpg");
+    this.image = quoteBgs[choice];
   }
   
   void display() {

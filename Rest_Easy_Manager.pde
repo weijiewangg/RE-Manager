@@ -17,6 +17,7 @@ float curbShade = 2; // how dark the background is relative to the text
 
 Quote curQuote;
 Background curBg;
+PImage[] quoteBgs;
 
 String funData[];
 String srsData[];
@@ -53,6 +54,10 @@ public void setup(){
   // load quote data
   funData = loadStrings("Funny words.txt");
   srsData = loadStrings("Serious words.txt");   
+  quoteBgs = new PImage[3];
+  for (int i = 0; i < 3; i++) {
+    quoteBgs[i] = loadImage((i+1) + ".jpg");
+  }
   
   // create initial quote and background
   curQuote = new Quote(quoteRatio, curfSpeed); 

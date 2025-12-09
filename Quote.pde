@@ -18,7 +18,7 @@ class Quote {
     
     String prevChoice = this.choice;
 
-    while (this.choice == null || this.choice.equals(prevChoice)) {
+    do {
       if (dataChoice < funRatio) {
         int choiceNum = int(random(0, funData.length));
         this.choice = funData[choiceNum];
@@ -29,6 +29,8 @@ class Quote {
         this.choice = srsData[choiceNum];
       }
     }
+    while (this.choice == null || this.choice.equals(prevChoice));
+    
   }
   
   void display() {
