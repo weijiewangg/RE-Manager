@@ -2,9 +2,8 @@ class Shape{
   String type;
   int numShapes, move;
   float[] diameter;
-  PVector center;
   color[] shapeCol;
-  float xSpeed, ySpeed;
+  float xSpeed, ySpeed, xPoint, yPoint;
   boolean right;
   
   Shape(String t, int n, float x, float y, float xS, float yS){
@@ -12,7 +11,8 @@ class Shape{
    this.numShapes = n;
    this.diameter = new float[this.numShapes];
    this.shapeCol = new color[this.numShapes];
-   this.center = new PVector(x, y);
+   this.xPoint = x;
+   this.yPoint = y;
    this.right = true;
    this.move = 0;
    this.xSpeed = xS;

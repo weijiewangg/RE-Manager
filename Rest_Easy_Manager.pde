@@ -10,6 +10,12 @@ SoothingSoundPlayer player;
 PImage logo, menuBg;
 
 float hrsSleep;
+float xSpeed = 20; 
+float ySpeed = 20; 
+float xPoint = 600; 
+float yPoint = 600;
+String type = "circle";
+int numShapes = 500;
 Shape s1;
 
 // encouraging words global variables
@@ -56,28 +62,28 @@ public void setup(){
   
   noStroke();
   //sleepSupport();
-  s1 = new Shape("circle", 80, 300, 300, 15, 15);
+  s1 = new Shape(type, numShapes, xPoint, yPoint, xSpeed, ySpeed);
 }
 
-//public void draw(){
-//  background(230);
-//  s1.drawShape();
+public void draw(){
+  background(230);
+  s1.drawShape();
 
-//  // load quote data
-//  funData = loadStrings("Funny words.txt");
-//  srsData = loadStrings("Serious words.txt");   
-//  quoteBgs = new PImage[5];
-//  for (int i = 0; i < 5; i++) {
-//    quoteBgs[i] = loadImage((i+1) + ".jpg");
-//  }
+  // load quote data
+  funData = loadStrings("Funny words.txt");
+  srsData = loadStrings("Serious words.txt");   
+  quoteBgs = new PImage[5];
+  for (int i = 0; i < 5; i++) {
+    quoteBgs[i] = loadImage((i+1) + ".jpg");
+  }
   
-//  // create initial quote and background
-//  curQuote = new Quote(quoteRatio, curfSpeed); 
-//  curBg = new Background(curbShade, curfSpeed);
+  // create initial quote and background
+  curQuote = new Quote(quoteRatio, curfSpeed); 
+  curBg = new Background(curbShade, curfSpeed);
   
-//  logo = loadImage("REM.png"); 
-//  menuBg = loadImage("menuBackground.jpg");
-//}
+  logo = loadImage("REM.png"); 
+  menuBg = loadImage("menuBackground.jpg");
+}
 
 public void draw(){  
   if (wordsRun == true) {
