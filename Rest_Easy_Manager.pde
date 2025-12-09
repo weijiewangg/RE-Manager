@@ -86,18 +86,31 @@ public void setup(){
 //}
 
 public void draw(){  
-  if (wordsRun == true) {
+  if (supportRun == true) {
+  }
+  
+  else if (calcRun == true) {
+  }
+  
+  else if (wordsRun == true) {
     curQuote.update(); // fix display and update order?
     curBg.update();
-    
     
     curBg.display(); 
     curQuote.display();
   }
   
+  else if (soundRun == true) {
+    createMenu();
+    sound.setVisible(true);
+  } 
+    
   else if (relaxRun == true) {
     noStroke();
     sleepSupport();
+  }
+  
+  else if (graphRun == true) {
   }
   
   else if (menuRun == true) {
