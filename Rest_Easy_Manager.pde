@@ -14,15 +14,16 @@ float hrsSleep;
 Shape s;
 
 // ENCOURAGING WORDS VARIABLES
-float quoteRatio = 0.4;
-int quoteBgsCount = 5;
-
+// can change
+float quoteRatio = 0.4; // ratio of funny to serious quotes
 float curfSpeed = 2; // fade speed of the text and background
 float curbShade = 2; // how dark the background is relative to the text
 
+// don't change
 Quote curQuote;
-Background curBg;
+QuoteBackground curBg;
 PImage[] quoteBgs;
+int quoteBgsCount = 5;
 
 String funData[];
 String srsData[];
@@ -49,22 +50,29 @@ boolean relaxRun = false;
 boolean graphRun = false;
 boolean menuRun = true;
 
-// MENU IMAGES
-PImage logo, menuBg;
+PImage logo, menuBg; // menu images
+
+// HOME BUTTON VARIABLES
+PImage home;
 
 public void setup(){
-  // set up menu display
-  size(800, 600, JAVA2D);
+  // set up screen display
+  size(800, 600);
   textAlign(CENTER, CENTER);
+  //frameRate(30);
   
   // set up GUI, all GUI starts invisible
   createGUI();
   customGUI();
   sound.setVisible(false);
   
+  // SOOTHING SOUND PLAYER
   player = new SoothingSoundPlayer(this);
-  s = new Shape("circle", 80, 300, 300, 15, 15);
   
+  // OPTICAL RELAXATION
+  s = new Shape("circle", 30, 300, 300, 15, 15);
+  
+  // ENCOURAGING WORDS
   // load quote data
   funData = loadStrings("Funny words.txt");
   srsData = loadStrings("Serious words.txt");   
@@ -75,10 +83,13 @@ public void setup(){
   
   // create initial quote and background
   curQuote = new Quote(quoteRatio, curfSpeed); 
-  curBg = new Background(curbShade, curfSpeed);
+  curBg = new QuoteBackground(curbShade, curfSpeed);
 
+
+  // MENU + HOME BUTTON
   logo = loadImage("REM.png"); 
   menuBg = loadImage("menuBackground.jpg");
+  home = loadImage("home.png");
 }
 
 public void draw(){  
@@ -95,6 +106,7 @@ public void draw(){
     
     curBg.display(); 
     curQuote.display();
+    createHomeButton();
   }
   
   else if (soundRun == true) {
@@ -105,6 +117,7 @@ public void draw(){
   else if (relaxRun == true) {
     background(230);
     s.drawShape();
+    createHomeButton();
   }
   
   else if (graphRun == true) {

@@ -1,3 +1,4 @@
+// FOR ENCOURAGING WORDS
 class Quote {
   float qRatio;
   String choice;

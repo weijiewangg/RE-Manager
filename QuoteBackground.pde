@@ -1,4 +1,5 @@
-class Background {
+// FOR ENCOURAGING WORDS
+class QuoteBackground {
   float fSpeed;
   float bShade;
   float bColour;
@@ -6,7 +7,7 @@ class Background {
   PImage image;
   boolean fadeOut;
   
-  Background(float bs, float fs) {
+  QuoteBackground(float bs, float fs) {
     this.fSpeed = fs;
     this.bShade = bs;
     this.bColour = 255/( this.bShade*this.fSpeed );
