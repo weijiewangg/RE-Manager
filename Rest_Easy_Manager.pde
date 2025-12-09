@@ -1,18 +1,19 @@
-// Need G4P library
+// LIBRARIES
 import g4p_controls.*;
-// You can remove the PeasyCam import if you are not using
-// the GViewPeasyCam control or the PeasyCam library.
-//import peasy.*;
 import processing.sound.*;
 import java.awt.Font;
+
+// SOUND PLAYER VARIABLES
 SoundFile file;
 SoothingSoundPlayer player;
-PImage logo, menuBg;
 
+// SLEEP SUPPORT VARIABLES
 float hrsSleep;
-Shape s1;
 
-// encouraging words global variables
+// OPTICAL RELAXATION VARIABLES
+Shape s;
+
+// ENCOURAGING WORDS VARIABLES
 float quoteRatio = 0.4;
 int quoteBgsCount = 5;
 
@@ -26,7 +27,7 @@ PImage[] quoteBgs;
 String funData[];
 String srsData[];
 
-// main menu global variables
+// MAIN MENU VARIABLES
 color btnCol = color(255, 240, 255, 180);
 color btnHover = color(255, 220, 255, 200);
 color btnText = color(80, 60, 120);
@@ -48,6 +49,9 @@ boolean relaxRun = false;
 boolean graphRun = false;
 boolean menuRun = true;
 
+// MENU IMAGES
+PImage logo, menuBg;
+
 public void setup(){
   // set up menu display
   size(800, 600, JAVA2D);
@@ -59,8 +63,7 @@ public void setup(){
   sound.setVisible(false);
   
   player = new SoothingSoundPlayer(this);
-  
-  s1 = new Shape("circle", 80, 300, 300, 15, 15);
+  s = new Shape("circle", 80, 300, 300, 15, 15);
   
   // load quote data
   funData = loadStrings("Funny words.txt");
@@ -78,15 +81,9 @@ public void setup(){
   menuBg = loadImage("menuBackground.jpg");
 }
 
-//public void draw(){
-//  background(230);
-//  s1.drawShape();
-
-//  
-//}
-
 public void draw(){  
   if (supportRun == true) {
+    sleepSupport();
   }
   
   else if (calcRun == true) {
@@ -106,8 +103,8 @@ public void draw(){
   } 
     
   else if (relaxRun == true) {
-    noStroke();
-    sleepSupport();
+    background(230);
+    s.drawShape();
   }
   
   else if (graphRun == true) {
