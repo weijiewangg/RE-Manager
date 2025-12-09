@@ -34,16 +34,22 @@ float by = 350;
 float bw = 300;
 float bh = 60;
 
+// Booleans for what's running
+boolean supportRun = false;
+boolean soundRun = false;
+boolean calcRun = false;
+boolean relaxRun = false;
+boolean wordsRun = false;
+boolean graphRun = false;
 
 public void setup(){
   size(800, 600, JAVA2D);
   textAlign(CENTER, CENTER);
   createGUI();
   customGUI();
-  player = new SoothingSoundPlayer(this);
-  logo = loadImage("REM.png"); 
-  menuBg = loadImage("menuBackground.jpg");
   
+  player = new SoothingSoundPlayer(this);
+
   // load quote data
   funData = loadStrings("Funny words.txt");
   srsData = loadStrings("Serious words.txt");   
@@ -51,16 +57,34 @@ public void setup(){
   // create initial quote and background
   curQuote = new Quote(quoteRatio, curfSpeed); 
   curBg = new Background(curbShade, curfSpeed);
+  
+  logo = loadImage("REM.png"); 
+  menuBg = loadImage("menuBackground.jpg");
 }
 
-public void draw(){
-  background(230);
+public void draw(){  
+  if (supportRun) {
+  }
   
-  if (false) {
+  else if (soundRun) {
+    sound.setVisible(true);
+  }
+  
+  else if (calcRun) {
+  }
+  
+  else if (relaxRun) {
+  }
+  
+  else if (wordsRun) {
+  }
+  
+  else if (graphRun) {
   }
   
   else {
     createMenu();
+    sound.setVisible(false);
   }
 }
 

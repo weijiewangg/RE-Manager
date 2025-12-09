@@ -36,7 +36,41 @@ void mousePressed() {
       float y = by + j * (bh + 20);
       
       if (mouseX > x && mouseX < x + bw && mouseY > y && mouseY < y + bh) {
-        println("Button clicked: " + buttonLabels[i*3+j]);
+        int index = i*3+j;
+        println("Button clicked: " + buttonLabels[index]);
+        
+        supportRun = false;
+        soundRun = false;
+        calcRun = false;
+        relaxRun = false;
+        wordsRun = false;
+        graphRun = false;
+        sound.setVisible(false);
+        
+        if (index == 0) {
+          supportRun = true;
+        }
+        
+        else if (index == 1) {
+          calcRun = true;
+        }
+        
+        else if (index == 2) {
+          wordsRun = true;
+        }
+        
+        else if (index == 3) {
+          soundRun = true;
+        }
+        
+        else if (index == 4) {
+          relaxRun = true;
+        }
+        
+        else {
+          graphRun = true;
+        }
+        
       }
     }
   }
