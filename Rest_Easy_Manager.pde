@@ -54,8 +54,8 @@ public void setup(){
   // load quote data
   funData = loadStrings("Funny words.txt");
   srsData = loadStrings("Serious words.txt");   
-  quoteBgs = new PImage[3];
-  for (int i = 0; i < 3; i++) {
+  quoteBgs = new PImage[5];
+  for (int i = 0; i < 5; i++) {
     quoteBgs[i] = loadImage((i+1) + ".jpg");
   }
   
@@ -69,9 +69,11 @@ public void setup(){
 
 public void draw(){  
   if (wordsRun == true) {
+    curQuote.update(); // fix display and update order?
     curBg.update();
+    
+    
     curBg.display(); 
-    curQuote.update();
     curQuote.display();
   }
   
