@@ -50,18 +50,18 @@ class Quote {
       this.colour++;
     
     if (this.colour <= 0) {
-      this.chooseQuote(this.qRatio);
+      this.chooseQuote(qRatio);
       curBg.chooseImage();
     }
     
     // if 0 and 255 ranges are exceeded
-    if (this.colour <= 0 || this.colour >= 255/this.fSpeed){
+    if (round(this.colour) <= 0 || round(this.colour) >= 255/this.fSpeed){
       // reset colour values within the 0 and 255 range
       if (this.fadeOut)
-        this.colour += 2;
+        this.colour++;
         
       else
-        this.colour -= 2;
+        this.colour--;
       
       // update fade out state
       this.fadeOut = !this.fadeOut;
