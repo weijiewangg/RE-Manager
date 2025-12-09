@@ -18,7 +18,7 @@ class Quote {
     
     String prevChoice = this.choice;
 
-    do {
+    do {      
       if (dataChoice < funRatio) {
         int choiceNum = int(random(0, funData.length));
         this.choice = funData[choiceNum];

@@ -40,7 +40,12 @@ float bw = 300;
 float bh = 60;
 
 // Booleans for what's running
+boolean supportRun = false;
+boolean calcRun = false;
 boolean wordsRun = false;
+boolean soundRun = false;
+boolean relaxRun = false;
+boolean graphRun = false;
 boolean menuRun = true;
 
 public void setup(){
@@ -55,8 +60,6 @@ public void setup(){
   
   player = new SoothingSoundPlayer(this);
   
-  noStroke();
-  //sleepSupport();
   s1 = new Shape("circle", 80, 300, 300, 15, 15);
   
   // load quote data
@@ -67,12 +70,12 @@ public void setup(){
     quoteBgs[i] = loadImage((i+1) + ".jpg");
   }
   
-    // create initial quote and background
-    curQuote = new Quote(quoteRatio, curfSpeed); 
-    curBg = new Background(curbShade, curfSpeed);
-  
-    logo = loadImage("REM.png"); 
-    menuBg = loadImage("menuBackground.jpg");
+  // create initial quote and background
+  curQuote = new Quote(quoteRatio, curfSpeed); 
+  curBg = new Background(curbShade, curfSpeed);
+
+  logo = loadImage("REM.png"); 
+  menuBg = loadImage("menuBackground.jpg");
 }
 
 //public void draw(){
@@ -90,6 +93,11 @@ public void draw(){
     
     curBg.display(); 
     curQuote.display();
+  }
+  
+  else if (relaxRun == true) {
+    noStroke();
+    sleepSupport();
   }
   
   else if (menuRun == true) {
