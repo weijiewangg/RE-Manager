@@ -1,5 +1,6 @@
 void createMenu() {
-  image(bg, 100, 0, 600, 350);
+  image(menuBg, 0, 0, 800, 600);
+  image(logo, 100, 0, 600, 350);
     
   textFont(createFont("Arial", 24));
   for (int i = 0; i < 2; i++) {

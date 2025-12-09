@@ -7,9 +7,7 @@ import processing.sound.*;
 import java.awt.Font;
 SoundFile file;
 SoothingSoundPlayer player;
-PImage bg;
-
-
+PImage logo, menuBg;
 
 // encouraging words global variables
 float quoteRatio = 0.4;
@@ -43,7 +41,8 @@ public void setup(){
   createGUI();
   customGUI();
   player = new SoothingSoundPlayer(this);
-  bg = loadImage("REM.png"); 
+  logo = loadImage("REM.png"); 
+  menuBg = loadImage("menuBackground.jpg");
   
   // load quote data
   funData = loadStrings("Funny words.txt");
