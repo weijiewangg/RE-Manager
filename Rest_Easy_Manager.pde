@@ -3,11 +3,27 @@ import g4p_controls.*;
 // You can remove the PeasyCam import if you are not using
 // the GViewPeasyCam control or the PeasyCam library.
 //import peasy.*;
-PImage bg;
 import processing.sound.*;
-SoundFile file;
 import java.awt.Font;
+SoundFile file;
 SoothingSoundPlayer player;
+PImage bg;
+
+
+
+// encouraging words global variables
+float quoteRatio = 0.4;
+
+float curfSpeed = 2; // fade speed of the text and background
+float curbShade = 2; // how dark the background is relative to the text
+
+Quote curQuote;
+Background curBg;
+
+String funData[];
+String srsData[];
+
+// main menu global variables
 color btnCol = color(255, 240, 255, 180);
 color btnHover = color(255, 220, 255, 200);
 color btnText = color(80, 60, 120);
@@ -28,44 +44,24 @@ public void setup(){
   customGUI();
   player = new SoothingSoundPlayer(this);
   bg = loadImage("REM.png"); 
+  
+  // load quote data
+  funData = loadStrings("Funny words.txt");
+  srsData = loadStrings("Serious words.txt");   
+  
+  // create initial quote and background
+  curQuote = new Quote(quoteRatio, curfSpeed); 
+  curBg = new Background(curbShade, curfSpeed);
 }
 
 public void draw(){
   background(230);
-  image(bg, 100, 0, 600, 350);
   
-  textFont(createFont("Arial", 24));
-  for (int i = 0; i < 2; i++) {
-    float x = bx + i * (bw + 20);
-    
-    for (int j = 0; j < 3; j++) {
-      float y = by + j * (bh + 20);
-      
-      if (mouseX > x && mouseX < x + bw && mouseY > y && mouseY < y + bh) // Hover effect
-        fill(btnHover);
-     
-      else 
-        fill(btnCol);
-  
-      // Button box
-      stroke(180, 130, 200);
-      strokeWeight(2);
-      rect(x, y, bw, bh, 20);
-      noStroke();
-  
-      // Button text
-      fill(btnText);
-      text(buttonLabels[i*3+j], x + bw/2, y + bh/2);
-    }
+  if (false) {
   }
-}
-
-  void mousePressed() {
-  for (int i = 0; i < 6; i++) {
-    float y = by + i * (bh + 20);
-    if (mouseX > bx && mouseX < bx + bw && mouseY > y && mouseY < y + bh) {
-      println("Button clicked: " + buttonLabels[i]);
-    }
+  
+  else {
+    createMenu();
   }
 }
 
