@@ -18,7 +18,7 @@ class Background {
     int prevChoice = this.choice;
     
     do {
-      this.choice = int(random(0,4.99));
+      this.choice = int(random(0,quoteBgsCount));
     }
     while (prevChoice == this.choice);
     
