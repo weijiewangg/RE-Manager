@@ -9,11 +9,13 @@ void createMenu() {
     for (int j = 0; j < 3; j++) {
       float y = by + j * (bh + 20);
       
-      if (mouseX > x && mouseX < x + bw && mouseY > y && mouseY < y + bh) // Hover effect
+      if (mouseX > x && mouseX < x + bw && mouseY > y && mouseY < y + bh) { // Hover effect
         fill(btnHover);
-     
-      else 
+      }
+
+      else {
         fill(btnCol);
+      }
   
       // Button box
       stroke(180, 130, 200);
