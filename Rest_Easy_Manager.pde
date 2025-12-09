@@ -35,18 +35,18 @@ float bw = 300;
 float bh = 60;
 
 // Booleans for what's running
-boolean supportRun = false;
-boolean soundRun = false;
-boolean calcRun = false;
-boolean relaxRun = false;
 boolean wordsRun = false;
-boolean graphRun = false;
+boolean menuRun = true;
 
 public void setup(){
+  // set up menu display
   size(800, 600, JAVA2D);
   textAlign(CENTER, CENTER);
+  
+  // set up GUI, all GUI starts invisible
   createGUI();
   customGUI();
+  sound.setVisible(false);
   
   player = new SoothingSoundPlayer(this);
 
@@ -63,26 +63,14 @@ public void setup(){
 }
 
 public void draw(){  
-  if (supportRun) {
+  if (wordsRun == true) {
+    curBg.update();
+    curBg.display(); 
+    curQuote.update();
+    curQuote.display();
   }
   
-  else if (soundRun) {
-    sound.setVisible(true);
-  }
-  
-  else if (calcRun) {
-  }
-  
-  else if (relaxRun) {
-  }
-  
-  else if (wordsRun) {
-  }
-  
-  else if (graphRun) {
-  }
-  
-  else {
+  else if (menuRun == true) {
     createMenu();
     sound.setVisible(false);
   }

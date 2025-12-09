@@ -39,36 +39,35 @@ void mousePressed() {
         int index = i*3+j;
         println("Button clicked: " + buttonLabels[index]);
         
-        supportRun = false;
-        soundRun = false;
-        calcRun = false;
-        relaxRun = false;
         wordsRun = false;
-        graphRun = false;
+        menuRun = false;
         sound.setVisible(false);
         
+        // sleep support
         if (index == 0) {
-          supportRun = true;
         }
         
+        // best sleep calculator
         else if (index == 1) {
-          calcRun = true;
         }
         
+        // encouraging words
         else if (index == 2) {
           wordsRun = true;
+
         }
         
+        // soothing sound player
         else if (index == 3) {
-          soundRun = true;
+          sound.setVisible(true);
         }
         
+        // optical relaxation
         else if (index == 4) {
-          relaxRun = true;
         }
         
+        // REM sleep graph
         else {
-          graphRun = true;
         }
         
       }

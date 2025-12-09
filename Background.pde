@@ -28,7 +28,6 @@ class Background {
   void display() {
     tint(this.bColour*this.fSpeed);
     image(this.image, 0, 0, width, height);
-    this.update();
   }
   
   void update() {

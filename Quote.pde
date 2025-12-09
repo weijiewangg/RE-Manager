@@ -37,7 +37,9 @@ class Quote {
     textSize(70);
     textAlign(LEFT, CENTER);
     text(this.choice, 50, 0, width-100, height);
-    
+  }
+  
+  void update() {
     // update colour values
     if (this.fadeOut)
       this.colour--;
