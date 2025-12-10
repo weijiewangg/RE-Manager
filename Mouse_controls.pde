@@ -1,4 +1,5 @@
 void mousePressed() {
+  // clicking menu buttons
   if (menuRun == true || soundRun == true) {
     for (int i = 0; i < 2; i++) {
       float x = bx + i * (bw + 20);
@@ -55,7 +56,8 @@ void mousePressed() {
     }
   }
   
-  if (supportRun == true || wordsRun == true || relaxRun == true) {
+  // clicking home button
+  if (supportRun == true || calcRun == true || graphRun == true || wordsRun == true || relaxRun == true) {
     if (mouseX > 15 && mouseX < 75 && mouseY > 15 && mouseY < 75) {
       supportRun = false;
       calcRun = false;

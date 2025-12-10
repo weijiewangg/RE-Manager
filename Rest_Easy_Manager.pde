@@ -10,6 +10,14 @@ SoothingSoundPlayer player;
 // SLEEP SUPPORT VARIABLES
 float hrsSleep;
 
+// BEST SLEEP CALCULATOR VARIABLES
+float curtT = 3; // hours required for tasks today
+float curpST = 9; // avg time of sleep in hours after noon
+float curpSL = 6; // avg no hours slept
+float curwT = 20; // wake time, represented in hours after 12 pm of the current day
+
+Calculator sleepCalc;
+
 // OPTICAL RELAXATION VARIABLES
 Shape s;
 
@@ -66,6 +74,9 @@ public void setup(){
   customGUI();
   sound.setVisible(false);
   
+  // BEST SLEEP CALCULATOR
+  sleepCalc = new Calculator(curtT, curpST, curpSL, curwT); 
+  
   // SOOTHING SOUND PLAYER
   player = new SoothingSoundPlayer(this);
   
@@ -99,11 +110,14 @@ public void draw(){
   }
   
   else if (calcRun == true) {
-    createMenu();
+    sleepCalc.calculateSleepLength();
+    sleepCalc.calculateSleepTime();
+    sleepCalc.display();
+    createHomeButton();
   }
 
   else if (graphRun == true) {
-    createMenu();
+    createHomeButton();
   }
   
   else if (soundRun == true) {
