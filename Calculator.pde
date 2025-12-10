@@ -1,40 +1,55 @@
+// BEST SLEEP CALCULATOR
 class Calculator {
-  float taskLength, pSleepLength, pSleepTime, wakeTime;
-  float sleepLength, sleepTime;
+  // Fields
+  float taskLength, wakeTime; // required task length and wake time of user
+  float pSleepLength, pSleepTime; // previous sleep length and sleep time of user
+  float sleepLength, sleepTime; // suggested sleep length and sleep time
   
+  // Constructor
   Calculator(float tT, float pST, float pSL, float wT) {
     this.taskLength = tT;
+    this.wakeTime = wT;
     this.pSleepLength = pSL;
     this.pSleepTime = pST;
-    this.wakeTime = wT;
   }
   
+  // Methods
   void calculateSleepLength() {
-    float sleepDiff = 8 - this.pSleepTime; // calculates amount of sleep diff with 8 hours (ideal amount of sleep)
+    // calculates diff of previous sleep with 8 hours (ideal amount of sleeps
+    float sleepDiff = 8 - this.pSleepTime; 
     
+    // recommended increase / decrease in user's sleep
     float sleepChange;
     
+    // reduces strength of sleepDiff and limits the change to 2 hours to prevent sudden changes    
     if (sleepDiff > 0) 
       sleepChange = min(2, 0.75*sleepDiff);
     
     else
       sleepChange = max(-2, 0.75*sleepDiff);
     
+    // recommended sleep length
     this.sleepLength = this.pSleepTime + sleepChange;
   }
   
   void calculateSleepTime() {
-    float freeTime = 23 - sleepLength - taskLength; // free time calculated with 23 hours to leave 1 hour extra time
+    // free time calculated with 23 hours to leave 1 hour extra time in case things don't work out
+    float freeTime = 23 - sleepLength - taskLength; 
     
+    // reduce sleep length if free time is negative
     if (freeTime < 0) {
-      this.sleepLength += freeTime; // reduce sleep length so free time can be 0;
-      freeTime = 0;
+      this.sleepLength += freeTime;
+      freeTime = 0; // sets free time back to 0
     }
     
+    // determines required sleep time
     float reqSleepTime = wakeTime - sleepLength;
+    
+    // choose recommended sleep time from the earlier one between the required and previous sleep time
     this.sleepTime = min(reqSleepTime, pSleepTime);
   }
   
+  // represent float of hours after 12 pm into XX:XX form
   public String representTime (float time) {
     int hour;
     String minutes, period;
@@ -60,7 +75,7 @@ class Calculator {
     return (hour + ":" + minutes + " " + period); 
   }
   
-  
+  // display text 
   void display() {
     image(menuBg, 0, 0, 800, 600);
     

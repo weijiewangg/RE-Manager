@@ -38,7 +38,7 @@ String srsData[];
 
 // MAIN MENU VARIABLES
 color btnCol = color(255, 240, 255, 180);
-color btnHover = color(255, 220, 255, 200);
+color btnHover = color(230, 205, 230, 200);
 color btnText = color(80, 60, 120);
 
 String[] buttonLabels = {"Sleep Support", "Best Sleep Calculator", "REM Sleep Graph", "Soothing Sound Player", "Optical Relaxation", "Encouraging Words"};
