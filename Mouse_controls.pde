@@ -12,10 +12,10 @@ void mousePressed() {
           
           supportRun = false;
           calcRun = false;
-          wordsRun = false;
+          graphRun = false;
           soundRun = false;
           relaxRun = false;
-          graphRun = false;
+          wordsRun = false;
           menuRun = false;
           sound.setVisible(false);
           
@@ -31,7 +31,7 @@ void mousePressed() {
           
           // encouraging words
           else if (index == 2) {
-            wordsRun = true;
+            graphRun = true;            
           }
           
           // soothing sound player
@@ -47,7 +47,7 @@ void mousePressed() {
           
           // REM sleep graph
           else {
-            graphRun = true;
+            wordsRun = true;
           }
           
         }
@@ -59,10 +59,10 @@ void mousePressed() {
     if (mouseX > 15 && mouseX < 75 && mouseY > 15 && mouseY < 75) {
       supportRun = false;
       calcRun = false;
-      wordsRun = false;
+      graphRun = false;
       soundRun = false;
       relaxRun = false;
-      graphRun = false;
+      wordsRun = false;
       menuRun = true;
     }
   }

@@ -33,7 +33,7 @@ color btnCol = color(255, 240, 255, 180);
 color btnHover = color(255, 220, 255, 200);
 color btnText = color(80, 60, 120);
 
-String[] buttonLabels = {"Sleep Support", "Best Sleep Calculator", "Encouraging Words", "Soothing Sound Player", "Optical Relaxation", "REM Sleep Graph" };
+String[] buttonLabels = {"Sleep Support", "Best Sleep Calculator", "REM Sleep Graph", "Soothing Sound Player", "Optical Relaxation", "Encouraging Words"};
 
 // Button positions
 float bx = 90;
@@ -44,10 +44,10 @@ float bh = 60;
 // Booleans for what's running
 boolean supportRun = false;
 boolean calcRun = false;
-boolean wordsRun = false;
+boolean graphRun = false;
 boolean soundRun = false;
 boolean relaxRun = false;
-boolean graphRun = false;
+boolean wordsRun = false;
 boolean menuRun = true;
 
 PImage logo, menuBg; // menu images
@@ -101,14 +101,9 @@ public void draw(){
   else if (calcRun == true) {
     createMenu();
   }
-  
-  else if (wordsRun == true) {
-    curQuote.update(); // fix display and update order?
-    curBg.update();
-    
-    curBg.display(); 
-    curQuote.display();
-    createHomeButton();
+
+  else if (graphRun == true) {
+    createMenu();
   }
   
   else if (soundRun == true) {
@@ -122,8 +117,13 @@ public void draw(){
     createHomeButton();
   }
   
-  else if (graphRun == true) {
-    createMenu();
+  else if (wordsRun == true) {
+    curQuote.update(); 
+    curBg.update();
+    
+    curBg.display(); 
+    curQuote.display();
+    createHomeButton();
   }
   
   else if (menuRun == true) {
