@@ -95,9 +95,11 @@ public void setup(){
 public void draw(){  
   if (supportRun == true) {
     sleepSupport();
+    createHomeButton();
   }
   
   else if (calcRun == true) {
+    createMenu();
   }
   
   else if (wordsRun == true) {
@@ -121,6 +123,7 @@ public void draw(){
   }
   
   else if (graphRun == true) {
+    createMenu();
   }
   
   else if (menuRun == true) {

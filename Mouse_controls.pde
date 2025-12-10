@@ -26,7 +26,7 @@ void mousePressed() {
           
           // best sleep calculator
           else if (index == 1) {
-            
+            calcRun = true;
           }
           
           // encouraging words
@@ -47,10 +47,23 @@ void mousePressed() {
           
           // REM sleep graph
           else {
+            graphRun = true;
           }
           
         }
       }
+    }
+  }
+  
+  if (supportRun == true || wordsRun == true || relaxRun == true) {
+    if (mouseX > 15 && mouseX < 75 && mouseY > 15 && mouseY < 75) {
+      supportRun = false;
+      calcRun = false;
+      wordsRun = false;
+      soundRun = false;
+      relaxRun = false;
+      graphRun = false;
+      menuRun = true;
     }
   }
   

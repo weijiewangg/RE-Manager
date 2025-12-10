@@ -1,8 +1,11 @@
 void createMenu() {
   image(menuBg, 0, 0, 800, 600);
   image(logo, 100, 0, 600, 350);
-    
+
   textFont(createFont("Arial", 24));
+  textAlign(CENTER, CENTER);
+  noTint();
+  
   for (int i = 0; i < 2; i++) {
     float x = bx + i * (bw + 20);
     
