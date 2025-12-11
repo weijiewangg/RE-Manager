@@ -1,3 +1,4 @@
+// MENU AND HOME BUTTON
 void createMenu() {
   image(menuBg, 0, 0, 800, 600);
   image(logo, 100, 0, 600, 350);
@@ -31,4 +32,19 @@ void createMenu() {
       text(buttonLabels[i*3+j], x + bw/2, y + bh/2);
     }
   }
+}
+
+void createHomeButton() { 
+  // Fill home button
+  if (mouseX > 15 && mouseX < 75 && mouseY > 15 && mouseY < 75) { // Hover effect
+    fill(btnHover, 200);
+  }
+  
+  else {
+    fill(btnCol, 200);
+  }
+  
+  stroke(5);
+  square(15, 15, 60);
+  image(home, 20, 20, 50, 50);
 }
