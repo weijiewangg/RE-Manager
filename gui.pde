@@ -89,17 +89,17 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:words
 } //_CODE_:wordsWindow:591454:
 
 public void fSpeedSliderChange(GCustomSlider source, GEvent event) { //_CODE_:fSpeedSlider:410252:
-  curfSpeed = fSpeedSlider.getValueF();
+  curQuote.fSpeed = fSpeedSlider.getValueF();
   println("fSpeedSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:fSpeedSlider:410252:
 
 public void bShadeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:bShadeSlider:881798:
-  curbShade = bShadeSlider.getValueF();
+  curBg.bShade = bShadeSlider.getValueF();
   println("custom_slider1 - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:bShadeSlider:881798:
 
 public void qRatioSliderChange(GCustomSlider source, GEvent event) { //_CODE_:qRatioSlider:578708:
-  curqRatio = qRatioSlider.getValueF();
+  curQuote.qRatio = qRatioSlider.getValueF();
   println("custom_slider1 - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:qRatioSlider:578708:
 
