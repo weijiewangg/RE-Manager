@@ -14,28 +14,96 @@
  * =========================================================
  */
 
-synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:sound:908893:
+synchronized public void sound(PApplet appc, GWinData data) { //_CODE_:soundWindow:485901:
   appc.background(230);
-  Font font = new Font("Arial", Font.PLAIN, 20);
-  title.setFont(font);
-} //_CODE_:sound:908893:
+  Font font = new Font("Arial", Font.PLAIN, 16);
+} //_CODE_:soundWindow:485901:
 
-public void playButtonPressed(GButton source, GEvent event) { //_CODE_:playButton:354994:
-  player.play();
-} //_CODE_:playButton:354994:
-
-public void pauseButtonPressed(GButton source, GEvent event) { //_CODE_:pauseButton:213628:
-  player.pauseSound();
-} //_CODE_:pauseButton:213628:
-
-public void songClicked(GDropList source, GEvent event) { //_CODE_:song:211351:
+public void songClicked(GDropList source, GEvent event) { //_CODE_:song:957168:
   player.setSound(source.getSelectedText());
-} //_CODE_:song:211351:
+  println("songs - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:song:957168:
 
-public void volumeSliderMoved(GCustomSlider source, GEvent event) { //_CODE_:volumeSlider:886865:
-  float sliderVal = volumeSlider.getValueF() / 100.0; // convert 0–100 → 0–1
-  player.setVolume(sliderVal);
-} //_CODE_:volumeSlider:886865:
+public void volumeSliderMoved(GCustomSlider source, GEvent event) { //_CODE_:volumeSlider:252865:
+  println("custom_slider1 - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:volumeSlider:252865:
+
+public void playButtonPressed(GButton source, GEvent event) { //_CODE_:playButton:242089:
+  player.play();
+  println("playButton - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:playButton:242089:
+
+public void pauseButtonPressed(GButton source, GEvent event) { //_CODE_:pauseButton:530668:
+  player.pauseSound();
+  println("pauseButton - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:pauseButton:530668:
+
+synchronized public void support(PApplet appc, GWinData data) { //_CODE_:supportWindow:474696:
+  appc.background(230);
+} //_CODE_:supportWindow:474696:
+
+public void hrsSleepSliderChange(GCustomSlider source, GEvent event) { //_CODE_:hrsSleepSlider:262179:
+  hrsSleep = hrsSleepSlider.getValueF();
+  println("hrsSleep - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:hrsSleepSlider:262179:
+
+synchronized public void calc(PApplet appc, GWinData data) { //_CODE_:calcWindow:361504:
+  appc.background(230);
+} //_CODE_:calcWindow:361504:
+
+public void taskLengthSliderChange(GCustomSlider source, GEvent event) { //_CODE_:taskLengthSlider:956967:
+  curtL = taskLengthSlider.getValueF();
+  println("custom_slider1 - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:taskLengthSlider:956967:
+
+public void wakeTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:wakeTimeSlider:884513:
+  curwT = wakeTimeSlider.getValueF();
+  
+  println("wakeTimeSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:wakeTimeSlider:884513:
+
+public void periodChange(GDropList source, GEvent event) { //_CODE_:period:651337:
+  if (source.getSelectedText() == "AM") 
+    curwT += 12;
+  println("period - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:period:651337:
+
+public void pSleepTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:pSleepTimeSlider:493808:
+  curpST = pSleepTimeSlider.getValueF();
+  println("pSleepTimeSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:pSleepTimeSlider:493808:
+
+public void period2Change(GDropList source, GEvent event) { //_CODE_:period2:940316:
+  if (source.getSelectedText() == "AM") 
+    curpST += 12;
+  println("period2 - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:period2:940316:
+
+public void pSleepLengthSliderChange(GCustomSlider source, GEvent event) { //_CODE_:pSleepLengthSlider:827478:
+  curpSL = pSleepLengthSlider.getValueF();
+  println("pSleepLengthSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:pSleepLengthSlider:827478:
+
+synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:wordsWindow:591454:
+  appc.background(230);
+} //_CODE_:wordsWindow:591454:
+
+public void fSpeedSliderChange(GCustomSlider source, GEvent event) { //_CODE_:fSpeedSlider:410252:
+  curfSpeed = fSpeedSlider.getValueF();
+  println("fSpeedSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:fSpeedSlider:410252:
+
+public void bShadeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:bShadeSlider:881798:
+  curbShade = bShadeSlider.getValueF();
+  println("custom_slider1 - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:bShadeSlider:881798:
+
+public void qRatioSliderChange(GCustomSlider source, GEvent event) { //_CODE_:qRatioSlider:578708:
+  curqRatio = qRatioSlider.getValueF();
+  println("custom_slider1 - GCustomSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:qRatioSlider:578708:
+
+
 
 // Create all the GUI controls. 
 // autogenerated do not edit
@@ -44,27 +112,14 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  sound = GWindow.getWindow(this, "soundWindow", 0, 0, 400, 300, JAVA2D);
-  sound.noLoop();
-  sound.setActionOnClose(G4P.KEEP_OPEN);
-  sound.addDrawHandler(this, "win_draw1");
-  playButton = new GButton(sound, 60, 250, 80, 30);
-  playButton.setText("PLAY");
-  playButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
-  playButton.addEventHandler(this, "playButtonPressed");
-  pauseButton = new GButton(sound, 250, 250, 80, 30);
-  pauseButton.setText("PAUSE");
-  pauseButton.setLocalColorScheme(GCScheme.RED_SCHEME);
-  pauseButton.addEventHandler(this, "pauseButtonPressed");
-  title = new GLabel(sound, 90, 20, 210, 40);
-  title.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  title.setText("Soothing Sound Player");
-  title.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
-  title.setOpaque(false);
-  song = new GDropList(sound, 150, 160, 90, 80, 3, 10);
-  song.setItems(loadStrings("list_211351"), 0);
+  soundWindow = GWindow.getWindow(this, "Soothing Sound Player", 0, 0, 400, 300, JAVA2D);
+  soundWindow.noLoop();
+  soundWindow.setActionOnClose(G4P.KEEP_OPEN);
+  soundWindow.addDrawHandler(this, "sound");
+  song = new GDropList(soundWindow, 150, 150, 90, 120, 5, 10);
+  song.setItems(loadStrings("list_957168"), 0);
   song.addEventHandler(this, "songClicked");
-  volumeSlider = new GCustomSlider(sound, 100, 100, 190, 50, "grey_blue");
+  volumeSlider = new GCustomSlider(soundWindow, 115, 100, 170, 40, "grey_blue");
   volumeSlider.setShowValue(true);
   volumeSlider.setShowLimits(true);
   volumeSlider.setLimits(100, 0, 100);
@@ -73,32 +128,177 @@ public void createGUI(){
   volumeSlider.setNumberFormat(G4P.INTEGER, 0);
   volumeSlider.setOpaque(false);
   volumeSlider.addEventHandler(this, "volumeSliderMoved");
-  volume = new GLabel(sound, 155, 70, 80, 20);
+  playButton = new GButton(soundWindow, 60, 210, 80, 30);
+  playButton.setText("Play");
+  playButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  playButton.addEventHandler(this, "playButtonPressed");
+  pauseButton = new GButton(soundWindow, 250, 210, 80, 30);
+  pauseButton.setText("Pause");
+  pauseButton.setLocalColorScheme(GCScheme.RED_SCHEME);
+  pauseButton.addEventHandler(this, "pauseButtonPressed");
+  volume = new GLabel(soundWindow, 160, 65, 80, 20);
   volume.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   volume.setText("Volume");
   volume.setOpaque(false);
-  sound.loop();
+  supportWindow = GWindow.getWindow(this, "Sleep Support", 0, 0, 240, 120, JAVA2D);
+  supportWindow.noLoop();
+  supportWindow.setActionOnClose(G4P.KEEP_OPEN);
+  supportWindow.addDrawHandler(this, "support");
+  hrsSleepSlider = new GCustomSlider(supportWindow, 27, 49, 171, 55, "grey_blue");
+  hrsSleepSlider.setShowValue(true);
+  hrsSleepSlider.setShowLimits(true);
+  hrsSleepSlider.setLimits(8.0, 0.0, 24.0);
+  hrsSleepSlider.setNbrTicks(5);
+  hrsSleepSlider.setShowTicks(true);
+  hrsSleepSlider.setNumberFormat(G4P.DECIMAL, 2);
+  hrsSleepSlider.setOpaque(false);
+  hrsSleepSlider.addEventHandler(this, "hrsSleepSliderChange");
+  hrsSleepLabel = new GLabel(supportWindow, 65, 15, 98, 20);
+  hrsSleepLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  hrsSleepLabel.setText("Hours of sleep");
+  hrsSleepLabel.setOpaque(false);
+  calcWindow = GWindow.getWindow(this, "Best Sleep Calculator", 0, 0, 300, 350, JAVA2D);
+  calcWindow.noLoop();
+  calcWindow.setActionOnClose(G4P.KEEP_OPEN);
+  calcWindow.addDrawHandler(this, "calc");
+  taskLengthSlider = new GCustomSlider(calcWindow, 18, 43, 108, 48, "grey_blue");
+  taskLengthSlider.setShowValue(true);
+  taskLengthSlider.setShowLimits(true);
+  taskLengthSlider.setLimits(0.0, 0.0, 24.0);
+  taskLengthSlider.setNbrTicks(5);
+  taskLengthSlider.setShowTicks(true);
+  taskLengthSlider.setNumberFormat(G4P.DECIMAL, 2);
+  taskLengthSlider.setOpaque(false);
+  taskLengthSlider.addEventHandler(this, "taskLengthSliderChange");
+  taskLabel = new GLabel(calcWindow, 18, 20, 105, 20);
+  taskLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  taskLabel.setText("Hours of tasks");
+  taskLabel.setOpaque(false);
+  wakeTimeSlider = new GCustomSlider(calcWindow, 145, 84, 123, 51, "grey_blue");
+  wakeTimeSlider.setShowValue(true);
+  wakeTimeSlider.setShowLimits(true);
+  wakeTimeSlider.setLimits(9.0, 0.0, 12.0);
+  wakeTimeSlider.setNbrTicks(5);
+  wakeTimeSlider.setShowTicks(true);
+  wakeTimeSlider.setNumberFormat(G4P.DECIMAL, 2);
+  wakeTimeSlider.setOpaque(false);
+  wakeTimeSlider.addEventHandler(this, "wakeTimeSliderChange");
+  period = new GDropList(calcWindow, 144, 140, 90, 60, 2, 10);
+  period.setItems(loadStrings("list_651337"), 0);
+  period.addEventHandler(this, "periodChange");
+  label1 = new GLabel(calcWindow, 134, 15, 157, 20);
+  label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label1.setText("Desired wake up time");
+  label1.setOpaque(false);
+  disclaimer = new GLabel(calcWindow, 135, 45, 152, 35);
+  disclaimer.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  disclaimer.setText("Wake up time may not be granted*");
+  disclaimer.setOpaque(false);
+  pSleepTimeSlider = new GCustomSlider(calcWindow, 163, 214, 113, 51, "grey_blue");
+  pSleepTimeSlider.setShowValue(true);
+  pSleepTimeSlider.setShowLimits(true);
+  pSleepTimeSlider.setLimits(9.0, 0.0, 12.0);
+  pSleepTimeSlider.setNbrTicks(5);
+  pSleepTimeSlider.setShowTicks(true);
+  pSleepTimeSlider.setNumberFormat(G4P.DECIMAL, 2);
+  pSleepTimeSlider.setOpaque(false);
+  pSleepTimeSlider.addEventHandler(this, "pSleepTimeSliderChange");
+  sleepTimeSlider = new GLabel(calcWindow, 169, 190, 103, 21);
+  sleepTimeSlider.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  sleepTimeSlider.setText("Past sleep time");
+  sleepTimeSlider.setOpaque(false);
+  period2 = new GDropList(calcWindow, 166, 270, 90, 60, 2, 10);
+  period2.setItems(loadStrings("list_940316"), 0);
+  period2.addEventHandler(this, "period2Change");
+  pSleepLengthSlider = new GCustomSlider(calcWindow, 18, 218, 122, 51, "grey_blue");
+  pSleepLengthSlider.setShowValue(true);
+  pSleepLengthSlider.setShowLimits(true);
+  pSleepLengthSlider.setLimits(8.0, 0.0, 24.0);
+  pSleepLengthSlider.setNbrTicks(5);
+  pSleepLengthSlider.setShowTicks(true);
+  pSleepLengthSlider.setNumberFormat(G4P.DECIMAL, 2);
+  pSleepLengthSlider.setOpaque(false);
+  pSleepLengthSlider.addEventHandler(this, "pSleepLengthSliderChange");
+  pSleepLengthLabel = new GLabel(calcWindow, 23, 191, 111, 20);
+  pSleepLengthLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  pSleepLengthLabel.setText("Past sleep length");
+  pSleepLengthLabel.setOpaque(false);
+  wordsWindow = GWindow.getWindow(this, "Encouraging Words", 0, 0, 400, 300, JAVA2D);
+  wordsWindow.noLoop();
+  wordsWindow.setActionOnClose(G4P.KEEP_OPEN);
+  wordsWindow.addDrawHandler(this, "win_draw1");
+  fSpeedSlider = new GCustomSlider(wordsWindow, 25, 41, 116, 50, "grey_blue");
+  fSpeedSlider.setShowValue(true);
+  fSpeedSlider.setShowLimits(true);
+  fSpeedSlider.setLimits(1.0, 0.5, 2.0);
+  fSpeedSlider.setNbrTicks(5);
+  fSpeedSlider.setShowTicks(true);
+  fSpeedSlider.setNumberFormat(G4P.DECIMAL, 2);
+  fSpeedSlider.setOpaque(false);
+  fSpeedSlider.addEventHandler(this, "fSpeedSliderChange");
+  fadeLabel = new GLabel(wordsWindow, 33, 8, 94, 25);
+  fadeLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  fadeLabel.setText("Fade speed");
+  fadeLabel.setOpaque(false);
+  bShadeSlider = new GCustomSlider(wordsWindow, 192, 41, 119, 50, "grey_blue");
+  bShadeSlider.setShowValue(true);
+  bShadeSlider.setShowLimits(true);
+  bShadeSlider.setLimits(2.5, 1.0, 5.0);
+  bShadeSlider.setNbrTicks(6);
+  bShadeSlider.setShowTicks(true);
+  bShadeSlider.setNumberFormat(G4P.DECIMAL, 2);
+  bShadeSlider.setOpaque(false);
+  bShadeSlider.addEventHandler(this, "bShadeSliderChange");
+  bShadeLabel = new GLabel(wordsWindow, 197, 11, 109, 20);
+  bShadeLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  bShadeLabel.setText("Background darkness");
+  bShadeLabel.setOpaque(false);
+  qRatioSlider = new GCustomSlider(wordsWindow, 24, 146, 117, 57, "grey_blue");
+  qRatioSlider.setShowValue(true);
+  qRatioSlider.setShowLimits(true);
+  qRatioSlider.setLimits(0.5, 0.0, 1.0);
+  qRatioSlider.setNbrTicks(5);
+  qRatioSlider.setShowTicks(true);
+  qRatioSlider.setNumberFormat(G4P.DECIMAL, 2);
+  qRatioSlider.setOpaque(false);
+  qRatioSlider.addEventHandler(this, "qRatioSliderChange");
+  qRatioLabel = new GLabel(wordsWindow, 28, 113, 100, 20);
+  qRatioLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  qRatioLabel.setText("Chance of a funny quote");
+  qRatioLabel.setOpaque(false);
+  soundWindow.loop();
+  supportWindow.loop();
+  calcWindow.loop();
+  wordsWindow.loop();
 }
 
 // Variable declarations 
 // autogenerated do not edit
-GWindow sound;
-GButton playButton; 
-GButton pauseButton; 
-GLabel title; 
+GWindow soundWindow;
 GDropList song; 
 GCustomSlider volumeSlider; 
+GButton playButton; 
+GButton pauseButton; 
 GLabel volume; 
-
-GWindow OpticalRelaxation;
-GDropList Shape; 
-GCustomSlider shapesNum; 
-GCustomSlider xPointSlider; 
-GCustomSlider yPointSlider; 
-GCustomSlider xSpeed1; 
-GCustomSlider ySpeed1; 
-GLabel Number; 
-GLabel xCenterLabel; 
-GLabel xSpeedLabel; 
-GLabel yCenterLabel; 
-GLabel ySpeedLabel; 
+GWindow supportWindow;
+GCustomSlider hrsSleepSlider; 
+GLabel hrsSleepLabel; 
+GWindow calcWindow;
+GCustomSlider taskLengthSlider; 
+GLabel taskLabel; 
+GCustomSlider wakeTimeSlider; 
+GDropList period; 
+GLabel label1; 
+GLabel disclaimer; 
+GCustomSlider pSleepTimeSlider; 
+GLabel sleepTimeSlider; 
+GDropList period2; 
+GCustomSlider pSleepLengthSlider; 
+GLabel pSleepLengthLabel; 
+GWindow wordsWindow;
+GCustomSlider fSpeedSlider; 
+GLabel fadeLabel; 
+GCustomSlider bShadeSlider; 
+GLabel bShadeLabel; 
+GCustomSlider qRatioSlider; 
+GLabel qRatioLabel; 

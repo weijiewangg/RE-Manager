@@ -18,7 +18,7 @@ void mousePressed() {
           relaxRun = false;
           wordsRun = false;
           menuRun = false;
-          sound.setVisible(false);
+          soundWindow.setVisible(false);
           
           // sleep support
           if (index == 0) {
@@ -38,7 +38,7 @@ void mousePressed() {
           // soothing sound player
           else if (index == 3) {
             soundRun = true;
-            sound.setVisible(true);
+            soundWindow.setVisible(true);
           }
           
           // optical relaxation

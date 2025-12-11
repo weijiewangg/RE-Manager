@@ -11,10 +11,10 @@ SoothingSoundPlayer player;
 float hrsSleep;
 
 // BEST SLEEP CALCULATOR VARIABLES
-float curtT = 3; // hours required for tasks of user
-float curpST = 9; // previous sleep time of user
-float curpSL = 6; // previous sleep length of user
-float curwT = 20; // wake time of user, represented in hours after 12 pm of the current day
+float curtL; // hours required for tasks of user
+float curpST; // previous sleep time of user
+float curpSL; // previous sleep length of user
+float curwT; // wake time of user, represented in hours after 12 pm of the current day
 
 BestSleepCalculator sleepCalc;
 
@@ -29,7 +29,7 @@ int numShapes = 300;
 
 // ENCOURAGING WORDS VARIABLES
 // can change
-float quoteRatio = 0.4; // ratio of funny to serious quotes
+float curqRatio = 0.4; // ratio of funny to serious quotes
 float curfSpeed = 2; // fade speed of the text and background
 float curbShade = 2; // how dark the background to the text
 
@@ -78,10 +78,10 @@ public void setup(){
   // set up GUI, all GUI starts invisible
   createGUI();
   customGUI();
-  sound.setVisible(false);
+  soundWindow.setVisible(false);
   
   // BEST SLEEP CALCULATOR
-  sleepCalc = new BestSleepCalculator(curtT, curpST, curpSL, curwT); 
+  sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
   
   // SOOTHING SOUND PLAYER
   player = new SoothingSoundPlayer(this);
@@ -99,7 +99,7 @@ public void setup(){
   }
   
   // create initial quote and background
-  curQuote = new Quote(quoteRatio, curfSpeed); 
+  curQuote = new Quote(curqRatio, curfSpeed); 
   curBg = new QuoteBackground(curbShade, curfSpeed);
 
 
@@ -116,6 +116,7 @@ public void draw(){
   }
   
   else if (calcRun == true) {
+    sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
     sleepCalc.calculateSleepLength();
     sleepCalc.calculateSleepTime();
     sleepCalc.display();
@@ -128,7 +129,7 @@ public void draw(){
   
   else if (soundRun == true) {
     createMenu();
-    sound.setVisible(true);
+    soundWindow.setVisible(true);
   } 
     
   else if (relaxRun == true) {
@@ -138,6 +139,9 @@ public void draw(){
   }
   
   else if (wordsRun == true) {
+    // curQuote = new Quote(curqRatio, curfSpeed); 
+  //curBg = new QuoteBackground(curbShade, curfSpeed);
+  
     curQuote.update(); 
     curBg.update();
     
@@ -148,7 +152,7 @@ public void draw(){
   
   else if (menuRun == true) {
     createMenu();
-    sound.setVisible(false);
+    soundWindow.setVisible(false);
   }
 }
 
