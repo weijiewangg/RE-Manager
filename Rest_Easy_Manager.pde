@@ -11,10 +11,7 @@ SoothingSoundPlayer player;
 float hrsSleep;
 
 // BEST SLEEP CALCULATOR VARIABLES
-float curtL; // hours required for tasks of user
-float curpST; // previous sleep time of user
-float curpSL; // previous sleep length of user
-float curwT; // wake time of user, represented in hours after 12 pm of the current day
+float curtL, curpST, curpSL, curwT; 
 
 BestSleepCalculator sleepCalc;
 
