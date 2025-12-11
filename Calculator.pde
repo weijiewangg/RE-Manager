@@ -1,12 +1,12 @@
 // BEST SLEEP CALCULATOR
-class Calculator {
+class BestSleepCalculator {
   // Fields
   float taskLength, wakeTime; // required task length and wake time of user
   float pSleepLength, pSleepTime; // previous sleep length and sleep time of user
   float sleepLength, sleepTime; // suggested sleep length and sleep time
   
   // Constructor
-  Calculator(float tT, float pST, float pSL, float wT) {
+  BestSleepCalculator(float tT, float pST, float pSL, float wT) {
     this.taskLength = tT;
     this.wakeTime = wT;
     this.pSleepLength = pSL;
@@ -51,33 +51,39 @@ class Calculator {
   
   // represent float of hours after 12 pm into XX:XX form
   public String representTime (float time) {
-    int hour;
-    String minutes, period;
+    int hour; // no. of hours mod 12
+    String minutes; // no. of minutes in the form XX
+    String period; // AM or PM
     
+    // if less than 12 hours after 12 pm
     if (time < 12) {
       hour = floor(time);
       minutes = nf(round((time - hour)*60));
       period = "PM";
     }
     
+    // if more than 12 hours after 12 pm
     else {
       hour = floor(time - 12);
       minutes = nf(round((time - 12 - hour)*60));
       period = "AM";
     }
     
+    // changes 0 PM/AM times into 12 PM/AM
     if (hour == 0)
       hour = 12;
-      
+    
+    // adds 0 in front of minutes if minutes is one digit
     if (float(minutes) < 10) 
       minutes = "0" + minutes;
     
+    // XX:XX form
     return (hour + ":" + minutes + " " + period); 
   }
   
   // display text 
   void display() {
-    image(menuBg, 0, 0, 800, 600);
+    image(menuBg, 0, 0, 800, 600); // background
     
     textSize(70);
     textAlign(LEFT, CENTER);

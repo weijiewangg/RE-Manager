@@ -1,4 +1,4 @@
-// FOR ENCOURAGING WORDS
+// ENCOURAGING WORDS
 class QuoteBackground {
   float fSpeed;
   float bShade;
