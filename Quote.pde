@@ -10,10 +10,10 @@ class Quote {
   // Constructor
   Quote(float qr, float fs) {
     this.qRatio = qr;
+    chooseQuote(this.qRatio);
     this.fSpeed = fs;
     this.colour = 255/fs;
     this.fadeOut = true;
-    chooseQuote(this.qRatio);
   }
   
   // Methods

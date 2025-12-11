@@ -1,3 +1,4 @@
+// SOOTHING SOUND PLAYER
 class SoothingSoundPlayer {
   // Fields
   SoundFile file;
