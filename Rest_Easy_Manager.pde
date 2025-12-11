@@ -65,7 +65,9 @@ public void setup(){
   s1 = new Shape(type, numShapes, xPoint, yPoint, xSpeed, ySpeed);
 }
 
-public void draw(){
+
+public void draw(){  
+  
   background(230);
   s1.drawShape();
 
@@ -83,9 +85,6 @@ public void draw(){
   
   logo = loadImage("REM.png"); 
   menuBg = loadImage("menuBackground.jpg");
-}
-
-public void draw(){  
   if (wordsRun == true) {
     curBg.update();
     curBg.display(); 
