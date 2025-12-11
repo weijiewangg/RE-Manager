@@ -19,7 +19,7 @@ class QuoteBackground {
   
   // Methods
   void chooseImage() { 
-    // records the index of the previous image chosen
+    // records the index of the previous image 
     int prevChoice = this.choice;
     
     // chooses a new index once
@@ -29,13 +29,13 @@ class QuoteBackground {
     // repeats while new index chosen is the same as previous index
     while (prevChoice == this.choice);
     
-    // gets new image with index
+    // new image with index
     this.image = quoteBgs[this.choice];
   }
   
   // display image
   void display() {
-    tint(this.bColour*this.fSpeed); // tint to darken the background
+    tint(this.bColour*this.fSpeed); // tint to darken
     image(this.image, 0, 0, width, height);
   }
   

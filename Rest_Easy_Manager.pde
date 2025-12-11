@@ -11,10 +11,10 @@ SoothingSoundPlayer player;
 float hrsSleep;
 
 // BEST SLEEP CALCULATOR VARIABLES
-float curtT = 3; // hours required for tasks today
-float curpST = 9; // avg time of sleep in hours after noon
-float curpSL = 6; // avg no hours slept
-float curwT = 20; // wake time, represented in hours after 12 pm of the current day
+float curtT = 3; // hours required for tasks of user
+float curpST = 9; // previous sleep time of user
+float curpSL = 6; // previous sleep length of user
+float curwT = 20; // wake time of user, represented in hours after 12 pm of the current day
 
 BestSleepCalculator sleepCalc;
 
@@ -31,7 +31,7 @@ int numShapes = 300;
 // can change
 float quoteRatio = 0.4; // ratio of funny to serious quotes
 float curfSpeed = 2; // fade speed of the text and background
-float curbShade = 2; // how dark the background is relative to the text
+float curbShade = 2; // how dark the background to the text
 
 // don't change
 Quote curQuote;
