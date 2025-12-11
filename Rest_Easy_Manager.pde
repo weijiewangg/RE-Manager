@@ -20,6 +20,12 @@ Calculator sleepCalc;
 
 // OPTICAL RELAXATION VARIABLES
 Shape s;
+float xSpeed = 15; 
+float ySpeed = 15; 
+float xPoint = 400; 
+float yPoint = 400;
+String type = "circle";
+int numShapes = 300;
 
 // ENCOURAGING WORDS VARIABLES
 // can change
@@ -81,7 +87,7 @@ public void setup(){
   player = new SoothingSoundPlayer(this);
   
   // OPTICAL RELAXATION
-  s = new Shape("circle", 30, 300, 300, 15, 15);
+  s = new Shape(type, numShapes, xPoint, yPoint, xSpeed, ySpeed);
   
   // ENCOURAGING WORDS
   // load quote data
