@@ -113,7 +113,6 @@ public void draw(){
   }
   
   else if (calcRun == true) {
-    sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
     sleepCalc.calculateSleepLength();
     sleepCalc.calculateSleepTime();
     sleepCalc.display();

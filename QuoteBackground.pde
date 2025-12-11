@@ -5,7 +5,7 @@ class QuoteBackground {
   PImage image; // background image
   float fSpeed; // fade speed 
   float bShade; // darkness of background compared to quote
-  float bColour; // tint of background
+  float colour; // tint of background
   boolean fadeOut; // whether the background is fading out or not
   
   // Constructor
@@ -13,7 +13,7 @@ class QuoteBackground {
     chooseImage();
     this.fSpeed = fs;
     this.bShade = bs;
-    this.bColour = 255/( this.bShade*this.fSpeed );
+    this.colour = 255/( this.bShade*this.fSpeed );
     this.fadeOut = curQuote.fadeOut;
   }
   
@@ -35,7 +35,7 @@ class QuoteBackground {
   
   // display image
   void display() {
-    tint(this.bColour*this.fSpeed); // tint to darken
+    tint(this.colour*this.fSpeed); // tint to darken
     image(this.image, 0, 0, width, height);
   }
   
@@ -43,10 +43,10 @@ class QuoteBackground {
   void update() {
     // update colour values
     if (this.fadeOut)
-      this.bColour -= 1/this.bShade;
+      this.colour -= 1/this.bShade;
     
     else
-      this.bColour += 1/this.bShade;
+      this.colour += 1/this.bShade;
  
     // match fade out state to quote fade out state
     this.fadeOut = curQuote.fadeOut;
