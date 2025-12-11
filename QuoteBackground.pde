@@ -1,5 +1,6 @@
 // ENCOURAGING WORDS
 class QuoteBackground {
+  // Fields
   float fSpeed;
   float bShade;
   float bColour;
@@ -7,6 +8,7 @@ class QuoteBackground {
   PImage image;
   boolean fadeOut;
   
+  // Constructor
   QuoteBackground(float bs, float fs) {
     this.fSpeed = fs;
     this.bShade = bs;
@@ -15,6 +17,7 @@ class QuoteBackground {
     chooseImage();
   }
   
+  // Methods
   void chooseImage() { 
     int prevChoice = this.choice;
     
