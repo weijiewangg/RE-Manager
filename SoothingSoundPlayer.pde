@@ -1,4 +1,6 @@
+// SOOTHING SOUND PLAYER
 class SoothingSoundPlayer {
+  // Fields
   SoundFile file;
   String currentName; // name from dropdown
   float volume = 1;  // default volume (100%)
@@ -10,6 +12,7 @@ class SoothingSoundPlayer {
     this.currentName = "None";
   }
   
+  // Methods
   void setSound(String name) { // Called when dropdown changes
     currentName = name;
     println("Selected sound: " + currentName);
