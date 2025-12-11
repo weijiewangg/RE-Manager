@@ -16,7 +16,7 @@ float curpST = 9; // avg time of sleep in hours after noon
 float curpSL = 6; // avg no hours slept
 float curwT = 20; // wake time, represented in hours after 12 pm of the current day
 
-Calculator sleepCalc;
+BestSleepCalculator sleepCalc;
 
 // OPTICAL RELAXATION VARIABLES
 Shape s;
@@ -75,7 +75,7 @@ public void setup(){
   sound.setVisible(false);
   
   // BEST SLEEP CALCULATOR
-  sleepCalc = new Calculator(curtT, curpST, curpSL, curwT); 
+  sleepCalc = new BestSleepCalculator(curtT, curpST, curpSL, curwT); 
   
   // SOOTHING SOUND PLAYER
   player = new SoothingSoundPlayer(this);
