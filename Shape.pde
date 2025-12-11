@@ -1,5 +1,6 @@
 // FOR OPTICAL RELAXATION
 class Shape {
+  // Fields
   String type;
   int numShapes, move;
   float[] diameter;
@@ -7,6 +8,7 @@ class Shape {
   float xSpeed, ySpeed, xPoint, yPoint;
   boolean right;
 
+  // Constructor
   Shape(String t, int n, float x, float y, float xS, float yS) {
     this.type = t;
     this.numShapes = n;
@@ -25,6 +27,7 @@ class Shape {
     }
   }
 
+  // Methods
   void drawShape() {
     noStroke();
 
