@@ -43,7 +43,10 @@ class BestSleepCalculator {
     }
     
     // determines required sleep time
-    this.sleepTime = wakeTime - sleepLength;
+    float reqSleepTime = wakeTime - sleepLength;
+    
+    // choose suggested sleep time
+    this.sleepTime = min(reqSleepTime, pSleepTime);
   }
   
   // represent float of hours after 12 pm into XX:XX form
