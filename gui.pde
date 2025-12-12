@@ -159,27 +159,21 @@ synchronized public void graph(PApplet appc, GWinData data) { //_CODE_:graphWind
 } //_CODE_:graphWindow:832583:
 
 public void AM1_clicked(GOption source, GEvent event) { //_CODE_:AM1:758752:
-  println("AM1 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:AM1:758752:
 
 public void PM1_clicked(GOption source, GEvent event) { //_CODE_:PM1:595985:
-  println("PM1 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:PM1:595985:
 
 public void sleepSliderValue(GCustomSlider source, GEvent event) { //_CODE_:sleepSlider:712134:
-  println("sleepSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:sleepSlider:712134:
 
 public void wakeSliderValue(GCustomSlider source, GEvent event) { //_CODE_:wakeSlider:881061:
-  println("wakeSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:wakeSlider:881061:
 
 public void AM2_clicked(GOption source, GEvent event) { //_CODE_:AM2:585301:
-  println("AM2 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:AM2:585301:
 
 public void PM2_clicked(GOption source, GEvent event) { //_CODE_:PM2:432570:
-  println("PM2 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:PM2:432570:
 
 

@@ -1,222 +1,188 @@
-// ================================================
-// ===============  REM SLEEP GRAPH  ===============
-// ================================================
-
 class REMGraph {
+  //Fields
+  float sleepHours, wakeHours, N1, N2, N3, REM;
+  ArrayList<Float> startTimes;   // stage start times (in hours)
+  ArrayList<Float> endTimes;     // stage end times
+  ArrayList<Integer> stageID;    // 1=N1, 2=N2, 3=N3, 4=REM
+  
+  //Constructor
+  REMGraph() {
+    this.startTimes = new ArrayList<Float>();
+    this.endTimes   = new ArrayList<Float>();
+    this.stageID    = new ArrayList<Integer>();
+    this.N1 = 5; // 5 minutes
+    this.N2 = 15; // 15 minutes
+    this.N3 = 30; // 30 minutes
+    this.REM = 40; // 40 minutes
+  }
+  
+  //Methods
+  float convertTo24(float hour, boolean isPM) { // converts to 24 hour clock
+    if (isPM && hour < 12) return hour + 12;   // Example: 7 PM -> 19
+    if (!isPM && hour == 12) return 0;         // 12 AM -> 0
+    return hour;
+  }
 
-  // USER INPUT (from sliders)
-  float sleepHours, wakeHours;
-  boolean sleepPM, wakePM;
+  void setTimes(float sH, boolean sPM, float wH, boolean wPM) {   // Called when sliders change — sets sleep/wake hours
 
-  // INTERNAL DATA
-  ArrayList<Float> times   = new ArrayList<Float>(); // X axis timestamps
-  ArrayList<Integer> stages = new ArrayList<Integer>(); // Y axis sleep stage markers
+    sleepHours = convertTo24(sH, sPM);
+    wakeHours  = convertTo24(wH, wPM);
 
-  // STAGE INDEX:
-  // 0 = Awake (not used in middle of sleep but used for axis)
-  // 1 = N1
-  // 2 = N2
-  // 3 = N3 (Deep)
-  // 4 = REM
-
-  // -------------------------------
-  // MAIN UPDATE FROM UI
-  // -------------------------------
-  void setTimes(float sleepH, boolean sleepIsPM, float wakeH, boolean wakeIsPM) {
-
-    sleepHours = convertTo24(sleepH, sleepIsPM);
-    wakeHours  = convertTo24(wakeH,  wakeIsPM);
-
-    // Ensure wake time is after sleep time
-    if (wakeHours <= sleepHours) {
+    // If you go to sleep before midnight and wake after midnight
+    if (wakeHours <= sleepHours)
       wakeHours += 24;
-    }
-
-    buildNightCycles();
+    buildNight();
   }
 
+  void buildNight() {   // Generate 90-minute cycles
 
-  // -------------------------------
-  // CONVERT 12H TO 24H FORMAT
-  // -------------------------------
-  float convertTo24(float t, boolean pm) {
-    if (pm && t < 12) return t + 12;
-    if (!pm && t == 12) return 0;
-    return t;
-  }
+    // Reset previous cycles
+    startTimes.clear();
+    endTimes.clear();
+    stageID.clear();
 
-  // Convert minutes → hours
-  float minToHr(float m) { return m / 60.0; }
-
-
-  // ---------------------------------------------------------
-  // BUILD SLEEP CYCLES — deterministic (NO RANDOMNESS)
-  // ---------------------------------------------------------
-  void buildNightCycles() {
-
-    times.clear();
-    stages.clear();
-
-    float t = sleepHours;
-    int cycle = 0;
+    float t = sleepHours; 
 
     while (t < wakeHours) {
+      float total = N1 + N2 + N3 + REM; // one sleep cycle is 1h30 minutes
+      float scale = 90f / total;
 
-      // Predict end of the 90-minute cycle
-      float cycleEnd = t + 1.5;
-      if (cycleEnd > wakeHours) cycleEnd = wakeHours;
+      N1 *= scale; N2 *= scale; N3 *= scale; REM *= scale; // makes sure it scales dynamically
 
-      // -----------------------------------
-      // FIXED REALISTIC DURATION PER CYCLE
-      // -----------------------------------
-
-      float N1_d, N2_d, N3_d, REM_d;
-
-      if (cycle == 0) {
-        // First cycle
-        N1_d  = 5;
-        N2_d  = 25;
-        N3_d  = 35;  // Most deep sleep early night
-        REM_d = 10;  // Shortest REM
-      }
-      else if (cycle == 1) {
-        N1_d  = 5;
-        N2_d  = 30;
-        N3_d  = 25;
-        REM_d = 30;
-      }
-      else if (cycle == 2) {
-        N1_d  = 5;
-        N2_d  = 35;
-        N3_d  = 10;  // Less deep sleep later
-        REM_d = 40;
-      }
-      else {
-        // Later cycles: mostly light sleep + long REM
-        N1_d  = 5;
-        N2_d  = 40;
-        N3_d  = 5;
-        REM_d = 40;
-      }
-
-      // Normalize total to exactly 90 mins
-      float total = N1_d + N2_d + N3_d + REM_d;
-      float scale = 90.0 / total;
-
-      N1_d *= scale;
-      N2_d *= scale;
-      N3_d *= scale;
-      REM_d *= scale;
-
-      // Add stages in sequence
-      addStage(t,                      N1_d, 1);
-      addStage(t + minToHr(N1_d),      N2_d, 2);
-      addStage(t + minToHr(N1_d + N2_d), N3_d, 3);
-      addStage(t + minToHr(N1_d + N2_d + N3_d), REM_d, 4);
-
-      // Move forward 90 minutes
-      t += 1.5;
-      cycle++;
+      addStage(t, N1, 1); // N1 stage
+      addStage(t + N1/60f, N2, 2); // N2 stage
+      addStage(t + (N1+N2)/60f, N3, 3); // N3 stage
+      addStage(t + (N1+N2+N3)/60f, REM,4); // REM stage
+      
+      t += 1.5f; // Next 90-minute cycle
     }
   }
 
-
-  // Add the stage to the timeline
-  void addStage(float start, float durMinutes, int stage) {
-    float end = start + minToHr(durMinutes);
-
-    times.add(start);
-    stages.add(stage);
-
-    times.add(end);
-    stages.add(stage);
+  void addStage(float start, float durMin, int id) { // Add a sleep stage to graph
+    startTimes.add(start); // stores start time of current sleep stage
+    endTimes.add(start + durMin / 60f); // stores end time of current sleep stage (for drawing bar correctly)
+    stageID.add(id); // which stage we are on
   }
 
-
-  // ----------------------------------------------
-  // DRAW THE GRAPH IN MAIN WINDOW
-  // ----------------------------------------------
-  void renderGraph(PApplet appc, int w, int h) {
-
-    int left = 140;
+  void renderGraph(PApplet app, int w, int h) { // Draw the bar graph
+    // Layout
+    int left = 80;
     int right = w - 40;
-    int top = 80;
+    int top = 120;
     int bottom = h - 60;
-
-    // Background
-    appc.background(230);
+    float spanHours = wakeHours - sleepHours;
+    float graphWidth = right - left;
 
     // Axes
-    appc.stroke(0);
-    appc.strokeWeight(2);
-    appc.line(left, bottom, right, bottom); // X
-    appc.line(left, bottom, left, top);     // Y
+    app.stroke(0);
+    app.strokeWeight(2);
+    app.line(left, bottom, right, bottom);
+    app.line(left, bottom, left, top);
 
-    // Y labels
-    drawYLabel(appc, bottom, "Awake", 0);
-    drawYLabel(appc, bottom, "N1 (Light)", 1);
-    drawYLabel(appc, bottom, "N2 (Light)", 2);
-    drawYLabel(appc, bottom, "N3 (Deep)", 3);
-    drawYLabel(appc, bottom, "REM", 4);
+    // Drawing Y-axis labels
+    drawYLabel(app, bottom, "Awake", 0, top);
+    drawYLabel(app, bottom, "N1 (Light)", 1, top);
+    drawYLabel(app, bottom, "N2 (Light)", 2, top);
+    drawYLabel(app, bottom, "N3 (Deep)", 3, top);
+    drawYLabel(app, bottom, "REM", 4, top);
 
-    // X labels (one per hour)
-    // --- X-AXIS TIME LABELS ---        // smaller labels
-    
-    // label every **2 hours** for spacing (change to 1 if you prefer)
-    // --- X AXIS TIME LABELS (SMALLER + FIRST LABEL AT ORIGIN) ---
-    appc.textAlign(CENTER);
-    appc.fill(0);
-    appc.textSize(10);
-    
-    // 1️⃣ FIRST LABEL: SLEEP TIME EXACTLY AT LEFT AXIS
-    float originClock = sleepHours % 24;
-    appc.text(formatClock(originClock), left, bottom + 20);
-    
-    // 2️⃣ HOURLY LABELS AFTER THAT
-    float totalH = wakeHours - sleepHours;
-    
-    for (int i = 1; i <= totalH; i++) {
-      float x = map(i, 0, totalH, left, right);
-      float clock = (sleepHours + i) % 24;
-      appc.text(formatClock(clock), x, bottom + 20);
+    for (int i = 0; i < startTimes.size(); i++) {// Draws each sleep stage segment as a vertical bar
+
+      float x1 = map(startTimes.get(i), sleepHours, wakeHours, left, right); // converts start times to x pos
+      float x2 = map(endTimes.get(i), sleepHours, wakeHours, left, right); // converts end times to x pos
+
+      float barW = x2 - x1; // bar width
+      float y = map(stageID.get(i), 0, 4, bottom, top); // maps each stage of sleep into vertical bar
+
+      // Stage colors
+      if (stageID.get(i) == 1) app.fill(255,215,90); // N1 = yellow
+      if (stageID.get(i) == 2) app.fill(80,230,200); // N2 = aqua
+      if (stageID.get(i) == 3) app.fill(90,170,255);//N3 = blue
+      if (stageID.get(i) == 4) app.fill(40,60,140); // REM = navy blue
+
+      app.noStroke();
+      app.rect(x1, y, barW, bottom - y); // draws bars
     }
 
+    // Hides :30 ticks if graph is too compressed
+    float pixelsPerHour = graphWidth / spanHours;
+    boolean hide30 = pixelsPerHour < 50;
 
+    // Drawing ticks and time labels
+    for (float hh = 0; hh <= spanHours + 0.0001; hh += 0.5) { // hh = hours since sleep started, adding 0.0001 makes sure wake up time tick is generated
 
-    // ----------------------
-    // Draw line graph
-    // ----------------------
-    appc.noFill();
-    appc.stroke(30, 90, 255);   // blue line
-    appc.strokeWeight(3);
+      float x = map(hh, 0, spanHours, left, right); // scales ticks to be drawn from left to right of the graph
 
-    appc.beginShape();
-    for (int i = 0; i < times.size(); i++) {
-      float x = map(times.get(i), sleepHours, wakeHours, left, right);
-      float y = map(stages.get(i), 0, 4, bottom, top);
-      appc.curveVertex(x, y);
+      app.stroke(0);
+      app.line(x, bottom, x, bottom + 5); // draws tick marks
+
+      float actualTime = sleepHours + hh;
+      String label = formatTime(actualTime); //float into readable label
+
+      float frac = actualTime - floor(actualTime);
+      int minute = round(frac * 60);// minute
+      if (minute == 60) minute = 0;
+
+      boolean isZero = (abs(hh) < 0.01);
+      boolean isHour = (minute == 0);
+      boolean isHalf = (minute == 30);
+
+      app.textAlign(CENTER);
+      
+      // Decides which labels to draw
+      if (isZero) { 
+        app.fill(0);
+        app.textSize(11);
+        app.text(label, x, bottom+20);
+      }
+      else if (isHour) {
+        app.fill(0);
+        app.textSize(11);
+        app.text(label, x, bottom+20);
+      }
+      else if (isHalf && !hide30) {
+        app.fill(60);
+        app.textSize(8);
+        app.text(label, x, bottom+15);
+      }
     }
-    appc.endShape();
   }
-
-
-  // Y-axis labels helper
-  void drawYLabel(PApplet appc, int bottom, String label, int stage) {
-    float y = map(stage, 0, 4, bottom, 80);
   
-    appc.fill(0);            // ← force black text
-    appc.textSize(12);       // ← match x-axis size
-    appc.textAlign(RIGHT, CENTER);
-    appc.text(label, 135, y);
+  String formatTime(float hour) { // Converts hour float into readable clock
+
+    int hr24 = ((int)floor(hour)) % 24; // removes any decimal for hour portion
+    if (hr24 < 0) {
+      hr24 += 24;
+    }
+    
+    float frac = hour - floor(hour); //turns .5 into :30
+    int min = round(frac * 60); 
+    
+    if (min == 60) { // handles rounding errors
+    min = 0; 
+    hr24 = (hr24 + 1)%24; // carries the hour forward
   }
 
+    int hr12 = hr24 % 12; // converst 24hr to 12hr
+    if (hr12 == 0) {
+      hr12 = 12; // 0 -> 12 AM, 12 -> 12 PM
+    }
 
-  // Clock label formatting
-  String formatClock(float t) {
-    int hr = floor(t);
-    String ampm = (hr >= 12) ? "PM" : "AM";
-    int h12 = hr % 12;
-    if (h12 == 0) h12 = 12;
-    return h12 + ampm;
+    String ampm = (hr24 >= 12 ? "PM" : "AM"); // determines AM or PM
+
+    if (min == 0) {
+      return hr12 + ampm; //shows xPM/AM
+    }
+    else {
+      return hr12 + ":30" + ampm; // shows x:30PM/AM
+    }
+  }
+
+  void drawYLabel(PApplet app, int bottom, String label, int stage, int top) { //Y-axis labels
+    float y = map(stage, 0, 4, bottom, top); // stage is a value that ranges from bottom to top
+    app.fill(0);
+    app.textSize(12);
+    app.textAlign(RIGHT, CENTER);
+    app.text(label, 60, y);
   }
 }

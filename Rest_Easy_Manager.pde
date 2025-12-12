@@ -77,7 +77,6 @@ public void setup(){
   
   // set up GUI, all GUI starts invisible
   createGUI();
-  customGUI();
   soundWindow.setVisible(false);
   
   // BEST SLEEP CALCULATOR
@@ -124,25 +123,18 @@ public void draw(){
   }
 
   else if (graphRun == true) {
-
-      background(230);    // Clear screen
-    
-      // --- READ UI VALUES (live updating) ---
-      float sleepH = sleepSlider.getValueF();
-      float wakeH  = wakeSlider.getValueF();
-    
-      boolean sleepIsPM = PM1.isSelected();
-      boolean wakeIsPM  = PM2.isSelected();
-    
-      // --- UPDATE GRAPH DATA EVERY FRAME ---
-      remGraph.setTimes(sleepH, sleepIsPM, wakeH, wakeIsPM);
-    
-      // --- DRAW GRAPH IN MAIN WINDOW ---
-      remGraph.renderGraph(this, width, height);
-    
-      // Home button
-      createHomeButton();
-    }
+    background(230);
+        
+    float sleepH = sleepSlider.getValueF();
+    float wakeH  = wakeSlider.getValueF();
+    boolean sleepIsPM = PM1.isSelected();
+    boolean wakeIsPM  = PM2.isSelected();
+        
+    remGraph.setTimes(sleepH, sleepIsPM, wakeH, wakeIsPM);
+    remGraph.renderGraph(this, width, height); // draws graph
+        
+    createHomeButton();
+  }
   
   else if (soundRun == true) {
     createMenu();
@@ -156,9 +148,7 @@ public void draw(){
   }
   
   else if (wordsRun == true) {
-    // curQuote = new Quote(curqRatio, curfSpeed); 
-  //curBg = new QuoteBackground(curbShade, curfSpeed);
-  
+    
     curQuote.update(); 
     curBg.update();
     
@@ -176,10 +166,4 @@ public void draw(){
     opticalWindow.setVisible(false);
     graphWindow.setVisible(false);
   }
-}
-
-// Use this method to add additional statements
-// to customise the GUI controls
-public void customGUI(){
-
 }
