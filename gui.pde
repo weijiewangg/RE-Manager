@@ -69,7 +69,6 @@ public void wakeTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:
 } //_CODE_:wakeTimeSlider:884513:
 
 public void periodChange(GDropList source, GEvent event) { //_CODE_:period:651337:
- 
   if (source.getSelectedText().equals("AM"))
     sleepCalc.wakeTime = wakeTimeSlider.getValueF() + 12;
   
