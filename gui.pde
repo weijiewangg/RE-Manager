@@ -59,34 +59,39 @@ synchronized public void calc(PApplet appc, GWinData data) { //_CODE_:calcWindow
 } //_CODE_:calcWindow:361504:
 
 public void taskLengthSliderChange(GCustomSlider source, GEvent event) { //_CODE_:taskLengthSlider:956967:
-  curtL = taskLengthSlider.getValueF();
-  println("taskLength = " + curtL);
+  sleepCalc.taskLength = taskLengthSlider.getValueF();
+  println("taskLength = " + sleepCalc.taskLength);
 } //_CODE_:taskLengthSlider:956967:
 
 public void wakeTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:wakeTimeSlider:884513:
-  curwT = wakeTimeSlider.getValueF();
-  
-  println("wakeTime = " + curwT);
+  sleepCalc.wakeTime = wakeTimeSlider.getValueF();
+  println("wakeTime = " + sleepCalc.wakeTime);
 } //_CODE_:wakeTimeSlider:884513:
 
-public void periodChange(GDropList source, GEvent event) { //_CODE_:period:651337:
-  if (source.getSelectedText() == "AM") 
-    curwT += 12;
+public void periodChange(GDropList source, GEvent event) { //_CODE_:period:651337:  
+  if (source.getSelectedText().equals("AM"))
+    sleepCalc.wakeTime = wakeTimeSlider.getValueF() + 12;
+  
+  else 
+    sleepCalc.wakeTime = wakeTimeSlider.getValueF();
 } //_CODE_:period:651337:
 
 public void pSleepTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:pSleepTimeSlider:493808:
-  curpST = pSleepTimeSlider.getValueF();
-  println("SleepTime = " + curpST);
+  sleepCalc.pSleepTime = pSleepTimeSlider.getValueF();
+  println("SleepTime = " + sleepCalc.pSleepTime);
 } //_CODE_:pSleepTimeSlider:493808:
 
 public void period2Change(GDropList source, GEvent event) { //_CODE_:period2:940316:
-  if (source.getSelectedText() == "AM") 
-    curpST += 12;
+  if (source.getSelectedText().equals("AM"))
+    sleepCalc.pSleepTime = pSleepTimeSlider.getValueF() + 12;
+  
+  else 
+    sleepCalc.pSleepTime = pSleepTimeSlider.getValueF();
 } //_CODE_:period2:940316:
 
 public void pSleepLengthSliderChange(GCustomSlider source, GEvent event) { //_CODE_:pSleepLengthSlider:827478:
-  curpSL = pSleepLengthSlider.getValueF();
-  println("SleepLength = " + curpSL);
+  sleepCalc.pSleepLength = pSleepLengthSlider.getValueF();
+  println("SleepLength = " + sleepCalc.pSleepLength);
 } //_CODE_:pSleepLengthSlider:827478:
 
 synchronized public void words(PApplet appc, GWinData data) { //_CODE_:wordsWindow:591454:

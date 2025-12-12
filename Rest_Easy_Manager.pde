@@ -14,8 +14,6 @@ SoothingSoundPlayer player;
 float hrsSleep;
 
 // BEST SLEEP CALCULATOR VARIABLES
-float curtL, curpST, curpSL, curwT; 
-
 BestSleepCalculator sleepCalc;
 
 // OPTICAL RELAXATION VARIABLES
@@ -81,7 +79,7 @@ public void setup(){
   soundWindow.setVisible(false);
   
   // BEST SLEEP CALCULATOR
-  sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
+  sleepCalc = new BestSleepCalculator(); 
   
   // SOOTHING SOUND PLAYER
   player = new SoothingSoundPlayer(this);
