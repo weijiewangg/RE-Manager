@@ -3,6 +3,9 @@ import g4p_controls.*;
 import processing.sound.*;
 import java.awt.Font;
 
+// REM SLEEP GRAPH VARIABLES
+REMGraph remGraph = new REMGraph();
+
 // SOUND PLAYER VARIABLES
 SoundFile file;
 SoothingSoundPlayer player;
@@ -121,8 +124,25 @@ public void draw(){
   }
 
   else if (graphRun == true) {
-    createHomeButton();
-  }
+
+      background(230);    // Clear screen
+    
+      // --- READ UI VALUES (live updating) ---
+      float sleepH = sleepSlider.getValueF();
+      float wakeH  = wakeSlider.getValueF();
+    
+      boolean sleepIsPM = PM1.isSelected();
+      boolean wakeIsPM  = PM2.isSelected();
+    
+      // --- UPDATE GRAPH DATA EVERY FRAME ---
+      remGraph.setTimes(sleepH, sleepIsPM, wakeH, wakeIsPM);
+    
+      // --- DRAW GRAPH IN MAIN WINDOW ---
+      remGraph.renderGraph(this, width, height);
+    
+      // Home button
+      createHomeButton();
+    }
   
   else if (soundRun == true) {
     createMenu();
@@ -150,6 +170,11 @@ public void draw(){
   else if (menuRun == true) {
     createMenu();
     soundWindow.setVisible(false);
+    wordsWindow.setVisible(false);
+    calcWindow.setVisible(false);
+    supportWindow.setVisible(false);
+    opticalWindow.setVisible(false);
+    graphWindow.setVisible(false);
   }
 }
 

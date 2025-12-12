@@ -11,6 +11,7 @@ void mousePressed() {
           int index = i*3+j;
           println("Button clicked: " + buttonLabels[index]);
           
+          //Setting initial bool states
           supportRun = false;
           calcRun = false;
           graphRun = false;
@@ -18,21 +19,28 @@ void mousePressed() {
           relaxRun = false;
           wordsRun = false;
           menuRun = false;
+          wordsWindow.setVisible(false);
+          calcWindow.setVisible(false);
+          supportWindow.setVisible(false);
           soundWindow.setVisible(false);
           
           // sleep support
           if (index == 0) {
             supportRun = true;
+            supportWindow.setVisible(true);
           }
           
           // best sleep calculator
           else if (index == 1) {
             calcRun = true;
+            calcWindow.setVisible(true);
           }
           
-          // encouraging words
+          // REM sleep graph
           else if (index == 2) {
-            graphRun = true;            
+            graphRun = true;
+            graphWindow.setVisible(true);
+            
           }
           
           // soothing sound player
@@ -44,11 +52,13 @@ void mousePressed() {
           // optical relaxation
           else if (index == 4) {
             relaxRun = true;
+            opticalWindow.setVisible(true);
           }
           
-          // REM sleep graph
+          // Encouraging words
           else {
             wordsRun = true;
+            wordsWindow.setVisible(true);
           }
           
         }

@@ -41,7 +41,7 @@ class Shape {
     else if (this.type.equals("square")) { //If the user chooses square shape
       for (int i = 0; i < this.numShapes; i++) {
         fill(this.shapeCol[i]);
-        square(this.xPoint, this.yPoint, this.diameter[i]);
+        square(this.xPoint - this.diameter[i]/2, this.yPoint - this.diameter[i]/2, this.diameter[i]);
       }
     }
 
