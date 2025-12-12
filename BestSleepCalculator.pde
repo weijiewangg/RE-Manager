@@ -6,17 +6,17 @@ class BestSleepCalculator {
   float sleepLength, sleepTime; // suggested sleep length and sleep time
   
   // Constructor
-  BestSleepCalculator(float tT, float pST, float pSL, float wT) {
-    this.taskLength = tT;
-    this.wakeTime = wT;
-    this.pSleepLength = pSL;
-    this.pSleepTime = pST;
+  BestSleepCalculator() {
+    this.taskLength = 5;
+    this.wakeTime = 20;
+    this.pSleepLength = 7;
+    this.pSleepTime = 12;
   }
   
   // Methods
   void calculateSleepLength() {
     // calculates diff of previous sleep with 8 hours (ideal amount of sleeps
-    float sleepDiff = 8 - this.pSleepTime; 
+    float sleepDiff = 8 - this.pSleepLength; 
     
     // recommended increase / decrease in user's sleep
     float sleepChange;
@@ -29,7 +29,7 @@ class BestSleepCalculator {
       sleepChange = max(-2, 0.75*sleepDiff);
     
     // recommended sleep length
-    this.sleepLength = this.pSleepTime + sleepChange;
+    this.sleepLength = this.pSleepLength + sleepChange;
   }
   
   void calculateSleepTime() {
@@ -43,10 +43,7 @@ class BestSleepCalculator {
     }
     
     // determines required sleep time
-    float reqSleepTime = wakeTime - sleepLength;
-    
-    // choose recommended sleep time from the earlier one between the required and previous sleep time
-    this.sleepTime = min(reqSleepTime, pSleepTime);
+    this.sleepTime = wakeTime - sleepLength;
   }
   
   // represent float of hours after 12 pm into XX:XX form
@@ -54,6 +51,13 @@ class BestSleepCalculator {
     int hour; // no. of hours mod 12
     String minutes; // no. of minutes in the form XX
     String period; // AM or PM
+    
+    // keep time within 0 to 24 range
+    if (time < 0)
+      time += 24;
+      
+    else if (time >= 24)
+      time -= 24;
     
     // if less than 12 hours after 12 pm
     if (time < 12) {
@@ -85,10 +89,10 @@ class BestSleepCalculator {
   void display() {
     image(menuBg, 0, 0, 800, 600); // background
     
-    textSize(70);
+    textSize(60);
     textAlign(LEFT, CENTER);
     fill(10);
-    text("You can get " + nf(sleepLength, 0, 1) + " hours of sleep starting at " + representTime(sleepTime) + 
+    text("You can complete " + nf(taskLength, 0, 1) + " hours of tasks and get " + nf(sleepLength, 0, 1) + " hours of sleep starting at " + representTime(sleepTime) + 
     " so you can wake up at " + representTime(sleepTime+sleepLength) + ".", 50, 0, width-100, height);
   }
 }

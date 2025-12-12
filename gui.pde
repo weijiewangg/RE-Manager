@@ -58,13 +58,15 @@ public void taskLengthSliderChange(GCustomSlider source, GEvent event) { //_CODE
 
 public void wakeTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE_:wakeTimeSlider:884513:
   sleepCalc.wakeTime = wakeTimeSlider.getValueF();
-
   println("wakeTimeSlider - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:wakeTimeSlider:884513:
 
-public void periodChange(GDropList source, GEvent event) { //_CODE_:period:651337:
-  if (source.getSelectedText() == "AM")
-    sleepCalc.wakeTime += 12;
+public void periodChange(GDropList source, GEvent event) { //_CODE_:period:651337:  
+  if (source.getSelectedText().equals("AM"))
+    sleepCalc.wakeTime = wakeTimeSlider.getValueF() + 12;
+  
+  else 
+    sleepCalc.wakeTime = wakeTimeSlider.getValueF();
   println("period - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:period:651337:
 
@@ -74,8 +76,12 @@ public void pSleepTimeSliderChange(GCustomSlider source, GEvent event) { //_CODE
 } //_CODE_:pSleepTimeSlider:493808:
 
 public void period2Change(GDropList source, GEvent event) { //_CODE_:period2:940316:
-  if (source.getSelectedText() == "AM")
-    sleepCalc.pSleepTime += 12;
+  if (source.getSelectedText().equals("AM"))
+    sleepCalc.pSleepTime = pSleepTimeSlider.getValueF() + 12;
+  
+  else 
+    sleepCalc.pSleepTime = pSleepTimeSlider.getValueF();
+    
   println("period2 - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:period2:940316:
 
