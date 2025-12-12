@@ -2,7 +2,7 @@
 class BestSleepCalculator {
   // Fields
   float taskLength, wakeTime; // required task length and wake time of user
-  float pSleepLength; // previous sleep length of user
+  float pSleepLength, pSleepTime; // previous sleep length and sleep time of user
   float sleepLength, sleepTime; // suggested sleep length and sleep time
   
   // Constructor
@@ -10,6 +10,7 @@ class BestSleepCalculator {
     this.taskLength = 5;
     this.wakeTime = 20;
     this.pSleepLength = 7;
+    this.pSleepTime = 12;
   }
   
   // Methods
@@ -42,7 +43,10 @@ class BestSleepCalculator {
     }
     
     // determines required sleep time
-    this.sleepTime = wakeTime - sleepLength;
+    float reqSleepTime = wakeTime - sleepLength;
+    
+    // choose suggested sleep time
+    this.sleepTime = min(reqSleepTime, pSleepTime);
   }
   
   // represent float of hours after 12 pm into XX:XX form
