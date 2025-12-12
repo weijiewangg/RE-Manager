@@ -14,6 +14,8 @@ SoothingSoundPlayer player;
 float hrsSleep;
 
 // BEST SLEEP CALCULATOR VARIABLES
+float curtL, curpST, curpSL, curwT; 
+
 BestSleepCalculator sleepCalc;
 
 // OPTICAL RELAXATION VARIABLES
@@ -99,6 +101,7 @@ public void setup(){
   curQuote = new Quote(curqRatio, curfSpeed); 
   curBg = new QuoteBackground(curbShade, curfSpeed);
 
+
   // MENU + HOME BUTTON
   logo = loadImage("REM.png"); 
   menuBg = loadImage("menuBackground.jpg");
@@ -112,6 +115,7 @@ public void draw(){
   }
   
   else if (calcRun == true) {
+    sleepCalc = new BestSleepCalculator(); 
     sleepCalc.calculateSleepLength();
     sleepCalc.calculateSleepTime();
     sleepCalc.display();
@@ -144,6 +148,7 @@ public void draw(){
   }
   
   else if (wordsRun == true) {
+    
     curQuote.update(); 
     curBg.update();
     
@@ -161,10 +166,4 @@ public void draw(){
     opticalWindow.setVisible(false);
     graphWindow.setVisible(false);
   }
-}
-
-// Use this method to add additional statements
-// to customise the GUI controls
-public void customGUI(){
-
 }
