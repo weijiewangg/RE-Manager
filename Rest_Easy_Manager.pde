@@ -100,7 +100,6 @@ public void setup(){
   curQuote = new Quote(curqRatio, curfSpeed); 
   curBg = new QuoteBackground(curbShade, curfSpeed);
 
-
   // MENU + HOME BUTTON
   logo = loadImage("REM.png"); 
   menuBg = loadImage("menuBackground.jpg");
@@ -114,7 +113,6 @@ public void draw(){
   }
   
   else if (calcRun == true) {
-    sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
     sleepCalc.calculateSleepLength();
     sleepCalc.calculateSleepTime();
     sleepCalc.display();
@@ -154,9 +152,6 @@ public void draw(){
   }
   
   else if (wordsRun == true) {
-    // curQuote = new Quote(curqRatio, curfSpeed); 
-  //curBg = new QuoteBackground(curbShade, curfSpeed);
-  
     curQuote.update(); 
     curBg.update();
     
