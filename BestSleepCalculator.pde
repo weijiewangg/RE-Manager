@@ -97,5 +97,6 @@ class BestSleepCalculator {
     fill(10);
     text("You can complete " + nf(taskLength, 0, 1) + " hours of tasks and get " + nf(sleepLength, 0, 1) + " hours of sleep starting at " + representTime(sleepTime) + 
     " so you can wake up at " + representTime(sleepTime+sleepLength) + ".", 50, 0, width-100, height);
+    println(wakeTime);
   }
 }
