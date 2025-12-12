@@ -80,7 +80,7 @@ public void setup(){
   soundWindow.setVisible(false);
   
   // BEST SLEEP CALCULATOR
-  sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
+  sleepCalc = new BestSleepCalculator(); 
   
   // SOOTHING SOUND PLAYER
   player = new SoothingSoundPlayer(this);
@@ -115,7 +115,7 @@ public void draw(){
   }
   
   else if (calcRun == true) {
-    sleepCalc = new BestSleepCalculator(curtL, curpST, curpSL, curwT); 
+    sleepCalc = new BestSleepCalculator(); 
     sleepCalc.calculateSleepLength();
     sleepCalc.calculateSleepTime();
     sleepCalc.display();
