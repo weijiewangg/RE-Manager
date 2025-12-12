@@ -28,7 +28,7 @@ class Shape {
     }
   }
   
-  //Methods
+  // Methods
   void drawShape() {
     noStroke();
 

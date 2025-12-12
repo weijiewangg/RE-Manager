@@ -1,10 +1,14 @@
 // SLEEP SUPPORT
 void sleepSupport() {
+  // background
   image(menuBg, 0, 0, 800, 600);
+  
+  // text settings
   fill(10);
   textSize(70);
   textAlign(LEFT, CENTER);
 
+  // different text based on no of hours of sleep
   if (hrsSleep < 7) {
     text("Try getting more sleep to feel better throughout the day!", 50, 0, width-100, height);
   }
